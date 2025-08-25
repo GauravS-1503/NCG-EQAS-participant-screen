@@ -1,0 +1,38 @@
+/* Sidebar behavior for long forms */
+.sidebar { overflow-y: auto; }
+
+/* Main content layout for forms */
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  max-height: unset;
+  overflow-y: visible;
+  overflow-x: visible;
+}
+.main-content form { margin-bottom: 0; }
+.content-wrapper { min-height: 100%; display: flex; flex-direction: column; }
+
+/* Table look */
+.custom-table tr:nth-child(even) { background-color: #fff; }
+
+/* Bucket tabs */
+.bucket-tabs { border-bottom: 1px solid #ccc; font-weight: 500; font-size: 16px; }
+.bucket-tab {
+  padding: 6px 12px; background: transparent; border: none;
+  border-bottom: 2px solid transparent; cursor: pointer; color: #333;
+}
+.bucket-tab:hover { color: #007bff; }
+.bucket-tab.active-tab { border-bottom-color: #007bff; color: #007bff; font-weight: 600; }
+
+/* Card customization */
+.card h6 { font-weight: 700; color: #2f3e63; }
+.card p { margin-bottom: 6px; }
+
+/* Modal header */
+.bg-navy { background-color: #1b2957 !important; color: #fff; }
+
+/* Multiselect selected option */
+select.form-select[multiple] option:checked {
+  background-color: transparent !important;
+  color: inherit !important;
+}

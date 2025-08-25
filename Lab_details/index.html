@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/labdetails.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<div id="header"></div>
+
+
+
+
+<!-- Layout -->
+<div class="d-flex" id="contentArea">
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar"></aside> 
+  <!-- Main Content -->
+  <div class="main-content flex-grow-1 p-4" id="mainContent">
+    <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+      <h5 class="text-uppercase mb-0" style="font-size: 1.2rem;">Lab Details</h5>
+    </div>
+    <div class="bg-white p-3 rounded shadow-sm">
+      <div class="content-wrapper">
+        <form>
+          <!-- NCG Membership -->
+          <div class="mb-4">
+            <label class="form-label">Are you an NCG Member?</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ncg_member" value="Yes" id="ncgYes" checked disabled> 
+              <label class="form-check-label" for="ncgYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="ncg_member" value="No" id="ncgNo" checked disabled>
+              <label class="form-check-label" for="ncgNo">No</label>
+            </div>
+          </div>
+
+          <!-- Other Programs -->
+          <div class="mb-4">
+            <label class="form-label">Have you participated in any other program?</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="other_program" value="Yes" id="programYes" checked disabled>
+              <label class="form-check-label" for="programYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="other_program" value="No" id="programNo" disabled>
+              <label class="form-check-label" for="programNo">No</label>
+            </div>
+
+            <div class="mt-3">
+              <label class="form-label">Programs:</label>
+              <select multiple class="form-select" name="program_list[]" disabled>
+                <option selected>Molecular Pathology QAP</option>
+                <option selected>NCG CBQAP</option>
+                <option selected>Cytopathology EQAS</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Institute Info -->
+          <h5 class="mt-4">Institute Information</h5>
+          <div class="mb-3">
+            <label class="form-label">Centre Name *</label>
+            <input type="text" class="form-control" name="centre_name" value="Tata Memorial Hospital">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Address *</label>
+            <input type="text" class="form-control" name="address" value="Dr. Ernest Borges Road, Parel">
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">State *</label>
+              <input type="text" class="form-control" name="state" value="Maharashtra">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">City *</label>
+              <input type="text" class="form-control" name="city" value="Mumbai">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Pincode *</label>
+              <input type="text" class="form-control" name="pincode" value="400012">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Do you have a registered GST No.? *</label>
+              <select class="form-select" name="has_gst">
+                <option>Select</option>
+                <option value="yes" selected>Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">GSTIN No.</label>
+              <input type="text" class="form-control" name="gstin" value="27ABCDE1234F1Z5">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">PAN No. *</label>
+            <input type="text" class="form-control" name="pan" value="AAAAA1234A">
+          </div>
+
+          <!-- Contact Details -->
+          <h5 class="mt-4">Contact Details</h5>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Pathologist Name *</label>
+              <input type="text" class="form-control" name="pathologist_name" value="Dr. Smitha Nair">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Pathologist Email *</label>
+              <input type="email" class="form-control" name="pathologist_email" value="smitha@tata.org">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Pathologist Mobile</label>
+              <input type="text" class="form-control" name="pathologist_mobile" value="9876543210">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Alternate Pathologist Name</label>
+              <input type="text" class="form-control" name="alt_pathologist_name" value="Dr. Meena Rao">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Alternate Pathologist Email</label>
+              <input type="email" class="form-control" name="alt_pathologist_email" value="meena@tata.org">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Alternate Pathologist Mobile</label>
+              <input type="text" class="form-control" name="alt_pathologist_mobile" value="9876543211">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Senior Technician Name *</label>
+              <input type="text" class="form-control" name="tech_name" value="Mr. Raj Kumar">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Senior Technician Email</label>
+              <input type="email" class="form-control" name="tech_email" value="raj@tata.org">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Senior Technician Mobile</label>
+              <input type="text" class="form-control" name="tech_mobile" value="9876543212">
+            </div>
+          </div>
+
+          <!-- Lab Details -->
+          <!-- Lab Details -->
+          <h5 class="mt-4">Lab Details</h5>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Lab Accredited *</label>
+              <select class="form-select" name="lab_accredited" disabled>
+                <option value="">Select</option>
+                <option selected>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Accreditation Details</label>
+              <input type="text" class="form-control" name="accreditation_details" value="NABL" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Annual Surgical Specimen Workload *</label>
+              <input type="text" class="form-control" name="surgical_workload" value="5200" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Number of Pathologists *</label>
+              <input type="number" class="form-control" name="pathologist_count" value="5" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Number of Histotechnologists *</label>
+              <input type="number" class="form-control" name="histotech_count" value="4" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Do you perform IHC? *</label>
+              <select class="form-select" name="ihc_performed" disabled>
+                <option>Select</option>
+                <option selected>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Do you perform Molecular Diagnosis? *</label>
+              <select class="form-select" name="mol_diagnosis" disabled>
+                <option>Select</option>
+                <option selected>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Specify workload per year</label>
+              <input type="text" class="form-control" name="workload_year" value="4300" disabled>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type of Immunostainer for IHC</label>
+            <select class="form-select" name="ihc_type" disabled>
+              <option>Select</option>
+              <option selected>Automated</option>
+              <option>Manual</option>
+            </select>
+          </div>
+          <div class="text-end mt-4">
+            <button type="button" class="btn btn-primary">Update</button>
+          </div>
+
+
+          <!-- Declaration -->
+        </form>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<!-- Approval Modal -->
+<div class="modal fade" id="approvalModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-navy">
+        <h5 class="modal-title">Send Registration Approval Email</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="approvalForm">
+          <div class="mb-3"><label>Centre Name</label><input type="text" class="form-control" id="centerName" readonly></div>
+          <div class="mb-3"><label>Date</label><input type="date" class="form-control" id="approvalDate"></div>
+          <div class="mb-3"><label>To Email</label><input type="email" class="form-control" id="toEmail"></div>
+          <div class="mb-3"><label>Subject</label><input type="text" class="form-control" value="Registration confirmation on NCG EQAS Application"></div>
+          <div class="mb-3">
+            <label>Body</label>
+            <textarea class="form-control" rows="8">Dear Sir / Madam,
+
+Welcome to eqas.ncgindia.org, your registration is approved.
+
+Your Login Information is as under:
+URL: https://eqas.ncgindia.org
+Username: [email]
+Password: [generated password]
+
+Best regards,
+Team NCG EQAS</textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-primary">Approve</button></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function openApprovalModal(center, email) {
+  document.getElementById("centerName").value = center;
+  document.getElementById("toEmail").value = email;
+  const modal = new bootstrap.Modal(document.getElementById("approvalModal"));
+  modal.show();
+}
+
+function openModalForm(centerId) {
+  const modalBody = document.getElementById("modalFormContent");
+
+  if (centerId === 'tata') {
+    modalBody.innerHTML = `<div class="container-fluid"><div class="row mb-3"><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">General Info</h6><p><strong>NCG Member:</strong> Yes</p><p><strong>Other EQAS:</strong> Cytopath EQAS, CB-QAP</p><p><strong>Centre:</strong> Tata Memorial Hospital</p><p><strong>Accredited:</strong> Yes (NABL)</p></div></div><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">Location & IDs</h6><p><strong>Address:</strong> Parel, Mumbai</p><p><strong>City:</strong> Mumbai</p><p><strong>Pincode:</strong> 400012</p><p><strong>GST No:</strong> 27ABCDE1234F1Z5</p><p><strong>PAN No:</strong> AAAAA1234A</p></div></div></div><div class="row mb-3"><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">Personnel</h6><p><strong>Pathologist:</strong> Dr. Smitha | smitha@tata.org | 9876543210</p><p><strong>Alternate Pathologist:</strong> Dr. Meena | meena@tata.org | 9876543211</p><p><strong>Senior Technician:</strong> Mr. Raj | raj@tata.org | 9876543212</p></div></div><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">Staff & Workload</h6><p><strong>Surgical Workload:</strong> 5200/year</p><p><strong>Pathologists:</strong> 5</p><p><strong>Histotechnologists:</strong> 4</p><p><strong>IHC:</strong> Yes</p><p><strong>Molecular:</strong> Yes</p><p><strong>Workload/year:</strong> 4300 cases</p><p><strong>IHC Method:</strong> Automated</p></div></div></div><div class="row mb-3"><div class="col-md-12"><div class="card p-3 shadow-sm"><h6 class="mb-3">Program & Payment</h6><p><strong>Programs:</strong> H&E EQAS, Breast Panel</p><p><strong>UTR:</strong> UTR123456789</p><p><strong>Bank:</strong> SBI, Parel</p><p><strong>Amount:</strong> ₹5000</p><p><strong>Date:</strong> 2025-07-01</p></div></div></div></div>`;
+  }
+
+  if (centerId === 'apollo') {
+    modalBody.innerHTML = `<div class="container-fluid"><div class="row mb-3"><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">General Info</h6><p><strong>NCG Member:</strong> No</p><p><strong>Other EQAS:</strong> None</p><p><strong>Centre:</strong> Apollo Chennai</p><p><strong>Accredited:</strong> No</p></div></div><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">Location & IDs</h6><p><strong>Address:</strong> Greams Lane, Chennai</p><p><strong>City:</strong> Chennai</p><p><strong>Pincode:</strong> 600006</p><p><strong>GST No:</strong> 33ABCDE9876L1Z8</p><p><strong>PAN No:</strong> BBBBB2345B</p></div></div></div><div class="row mb-3"><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">Personnel</h6><p><strong>Pathologist:</strong> Dr. Kumar | kumar@apollo.org | 9988776655</p><p><strong>Alternate Pathologist:</strong> -</p><p><strong>Senior Technician:</strong> Mr. Ravi | ravi@apollo.org | 8899776655</p></div></div><div class="col-md-6"><div class="card p-3 shadow-sm"><h6 class="mb-3">Staff & Workload</h6><p><strong>Surgical Workload:</strong> 3100/year</p><p><strong>Pathologists:</strong> 3</p><p><strong>Histotechnologists:</strong> 2</p><p><strong>IHC:</strong> Yes</p><p><strong>Molecular:</strong> No</p><p><strong>Workload/year:</strong> 2800 cases</p><p><strong>IHC Method:</strong> Manual</p></div></div></div><div class="row mb-3"><div class="col-md-12"><div class="card p-3 shadow-sm"><h6 class="mb-3">Program & Payment</h6><p><strong>Programs:</strong> Tissue Processing, Miscellaneous Panel</p><p><strong>UTR:</strong> UTR987654321</p><p><strong>Bank:</strong> ICICI, Chennai</p><p><strong>Amount:</strong> ₹4200</p><p><strong>Date:</strong> 2025-07-03</p></div></div></div></div>`;
+  }
+
+  const modal = new bootstrap.Modal(document.getElementById("registrationModal"));
+  modal.show();
+}
+
+function downloadExcel() {
+  const link = document.createElement("a");
+  link.href = "../assets/registrations.xlsx";
+  link.download = "registrations.xlsx";
+  link.click();
+}
+
+function setActiveTab(element) {
+  document.querySelectorAll('.bucket-tab').forEach(tab => tab.classList.remove('active-tab'));
+  element.classList.add('active-tab');
+
+  const status = element.getAttribute('data-status');
+
+  const allTable = document.getElementById('tableAll');
+  const defaultTable = document.querySelector('.table:not(#tableAll)');
+
+  // Hide both tables initially
+  allTable.style.display = 'none';
+  defaultTable.style.display = 'none';
+
+  // Show relevant table
+  if (status === 'all') {
+    allTable.style.display = 'table';
+  } else {
+    defaultTable.style.display = 'table';
+  }
+
+  const approveBtns = document.querySelectorAll('.approve-btn');
+  const disapproveBtns = document.querySelectorAll('.disapprove-btn');
+
+  approveBtns.forEach(btn => btn.style.display = 'inline-block');
+  disapproveBtns.forEach(btn => btn.style.display = 'inline-block');
+
+  if (status === 'approved') {
+    approveBtns.forEach(btn => btn.style.display = 'none');
+  } else if (status === 'disapproved') {
+    disapproveBtns.forEach(btn => btn.style.display = 'none');
+  } else if (status === 'all') {
+    approveBtns.forEach(btn => btn.style.display = 'none');
+    disapproveBtns.forEach(btn => btn.style.display = 'none');
+  }
+}
+
+function openDisapprovalModal(center) {
+  if (confirm(`Are you sure you want to disapprove ${center}?`)) {
+    alert(`${center} has been disapproved.`);
+    // You can add backend logic here later (AJAX or form submission)
+  }
+}
+
+</script>
+
+
+<script src="../assets/include.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
