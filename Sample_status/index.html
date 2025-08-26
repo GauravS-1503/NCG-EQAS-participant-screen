@@ -78,30 +78,35 @@
               <td style="text-align: center;">2025</td>
               <td style="text-align: center;">27</td>
               <td style="text-align: center;">ER</td>
+              <td style="text-align: center;">view</td>
               <td style="text-align: center;">Sample yet to be dispatched</td>
             </tr>
             <tr>
               <td style="text-align: center;">2025</td>
               <td style="text-align: center;">27</td>
               <td style="text-align: center;">PR</td>
+              <td style="text-align: center;">view</td>
               <td style="text-align: center;">Sample Sent by NCG</td>
             </tr>
             <tr>
               <td style="text-align: center;">2025</td>
               <td style="text-align: center;">26</td>
               <td style="text-align: center;">Her2/Neu</td>
+              <td style="text-align: center;">view</td>
               <td style="text-align: center;">Sample Received by Center</td>
             </tr>
             <tr>
               <td style="text-align: center;">2025</td>
               <td style="text-align: center;">28</td>
               <td style="text-align: center;">Lymphoma</td>
+              <td style="text-align: center;">view</td>
               <td style="text-align: center;">Sample Reported by Center</td>
             </tr>
             <tr>
               <td style="text-align: center;">2025</td>
               <td style="text-align: center;">29</td>
               <td style="text-align: center;">Miscellaneous</td>
+              <td style="text-align: center;">view</td>
               <td style="text-align: center;">Sample Received by NCG</td>
             </tr>
           </tbody>
@@ -413,6 +418,7 @@
               <td class="text-center">2025</td>
               <td class="text-center">27</td>
               <td class="text-center">TSP</td>
+              <td class="text-center">view</td>
               <td class="text-center">Pending</td>
             </tr>
           </tbody>
@@ -467,8 +473,8 @@
 
           <!-- Status -->
           <tbody id="heStatusTableBody">
-            <tr><td class="text-center">2025</td><td class="text-center">27</td><td class="text-center">Diagnostic Histopathology</td><td class="text-center">Pending</td></tr>
-            <tr><td class="text-center">2025</td><td class="text-center">28</td><td class="text-center">MDSR</td><td class="text-center">Result Submitted</td></tr>
+            <tr><td class="text-center">2025</td><td class="text-center">27</td><td class="text-center">Diagnostic Histopathology</td><td class="text-center">view</td><td class="text-center">Pending</td></tr>
+            <tr><td class="text-center">2025</td><td class="text-center">28</td><td class="text-center">MDSR</td><td class="text-center">view</td><td class="text-center">Result Submitted</td></tr>
           </tbody>
 
           <!-- Examine Slides -->
@@ -691,6 +697,10 @@
                 <td style="width: 25%; text-align: center;">Case 2</td>
                 <td><input type="text" class="form-control" placeholder="Enter diagnosis"></td>
               </tr>
+              <tr>
+                <td style="width: 25%; text-align: center;">Case 3</td>
+                <td><input type="text" class="form-control" placeholder="Enter diagnosis"></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -744,19 +754,19 @@
           <!-- Describe -->
           <div class="mb-3">
             <label for="describe" class="form-label fw-semibold">Describe Lesion</label>
-            <input type="text" id="describe" class="form-control" placeholder="Enter description">
+            <textarea id="describe" class="form-control" rows="10" placeholder="Describe"></textarea>
           </div>
 
           <!-- Comments -->
           <div class="mb-3">
             <label for="comments" class="form-label fw-semibold">Comments (if any)</label>
-            <input type="text" id="comments" class="form-control" placeholder="Enter comments">
+            <textarea id="comments" class="form-control" rows="10" placeholder="Enter comments"></textarea>
           </div>
 
           <!-- Diagnosis -->
           <div class="mb-3">
             <label for="diagnosis" class="form-label fw-semibold">Diagnosis</label>
-            <input type="text" id="diagnosis" class="form-control" placeholder="Enter diagnosis">
+            <textarea id="diagnosis" class="form-control" rows="40" placeholder="Diagnosis"></textarea>
           </div>
         </form>
       </div>
@@ -869,6 +879,7 @@
           <th style="text-align:center">Year</th>
           <th style="text-align:center">Run No</th>
           <th style="text-align:center">Submodule</th>
+          <th style="text-align:center">Cover Letter</th>
           <th style="text-align:center">Current Status</th>
         </tr>
       `;
@@ -933,6 +944,7 @@
             <th class="text-center">Year</th>
             <th class="text-center">Run No</th>
             <th class="text-center">Submodule</th>
+            <th class="text-center">Cover Letter</th>
             <th class="text-center">Current Status</th>
           </tr>`,
         body: 'heStatusTableBody'
@@ -992,6 +1004,7 @@
           <th class="text-center">Year</th>
           <th class="text-center">Run No</th>
           <th class="text-center">Submodule</th>
+          <th class="text-center">Cover Letter</th>
           <th class="text-center">Current Status</th>
         </tr>`;
     } else if (status === 'tsp-receive') {
