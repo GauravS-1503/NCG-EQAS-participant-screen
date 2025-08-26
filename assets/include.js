@@ -9,27 +9,56 @@
   }
 
   async function inject(sel, rel) {
-    const host = document.querySelector(sel);
-    if (!host) return;
+  const host = document.querySelector(sel);
+  if (!host) return;
 
-    const base = computeBase();
-    const url  = `${base}/${rel}`.replace(/\/+/g, '/');
+  const base = computeBase(); // e.g. "/NCG-EQAS-participant-screen"
+  const url  = `${base}/${rel}`.replace(/\/+/g, '/');
 
-    try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  try {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
 
-      // Keep fragment-relative assets working from the same base
-      let html = await res.text();
-      html = html.replace(
-        /(src|href)="(?!https?:|\/\/|data:|#|\/)/g,
-        `$1="${base}/`
-      );
-      host.innerHTML = html;
-    } catch (err) {
-      console.error('[include] failed:', url, err);
-    }
+    const html = await res.text();
+
+    // Parse the fetched fragment so we can rewrite URLs safely
+    const tpl = document.createElement('template');
+    tpl.innerHTML = html;
+
+    // Rewriter: prefix relative src/href, remove ./ and ../ safely
+    const rewrite = (el, attr) => {
+      const v = el.getAttribute(attr);
+      if (!v) return;
+
+      // absolute/external/hash → leave alone
+      if (/^(https?:)?\/\//i.test(v) || v.startsWith('data:') || v.startsWith('#')) return;
+
+      // ROOT-relative (starts with single "/") → prefix with base
+      if (v.startsWith('/')) {
+        // avoid turning '//' (protocol-relative) into '/base//...'
+        el.setAttribute(attr, `${base}${v}`.replace(/\/+/g, '/'));
+        return;
+      }
+
+      // plain relative → strip ./ and ../ then prefix with base
+      let cleaned = v.replace(/^(\.\/)+/, '');
+      while (cleaned.startsWith('../')) cleaned = cleaned.slice(3);
+      el.setAttribute(attr, `${base}/${cleaned}`.replace(/\/+/g, '/'));
+    };
+
+
+    // Rewrite links & images inside the fragment
+    tpl.content.querySelectorAll('[src]').forEach(n => rewrite(n, 'src'));
+    tpl.content.querySelectorAll('[href]').forEach(n => rewrite(n, 'href'));
+
+    host.innerHTML = '';
+    host.appendChild(tpl.content);
+
+  } catch (err) {
+    console.error('[include] failed:', url, err);
   }
+}
+
 
   function markActive() {
     const segs = location.pathname.split('/').filter(Boolean);
