@@ -1,69 +1,77 @@
-// /assets/include.js (participant)
+// /assets/include.js  (participant)
 (function () {
+  // Compute base for GitHub Pages reliably
   function computeBase() {
-    // Find where this script was loaded from, then strip trailing /assets/...
+    // If served from *.github.io/<repo>/..., base should be "/<repo>"
+    const gh = location.hostname.endsWith('github.io');
+    if (gh) {
+      const segs = location.pathname.split('/').filter(Boolean);
+      return segs.length ? '/' + segs[0] : '';
+    }
+    // Fallback: infer from this script's src (works locally too)
     const s = document.querySelector('script[src*="include.js"]');
     if (!s) return '';
     const u = new URL(s.getAttribute('src'), location.href);
-    return u.pathname.replace(/\/assets\/.*$/, '') || '';
+    return (u.pathname.replace(/\/assets\/.*$/, '') || '');
   }
 
   async function inject(sel, rel) {
-  const host = document.querySelector(sel);
-  if (!host) return;
+    const host = document.querySelector(sel);
+    if (!host) return;
 
-  const base = computeBase(); // e.g. "/NCG-EQAS-participant-screen"
-  const url  = `${base}/${rel}`.replace(/\/+/g, '/');
+    const base = computeBase();            // e.g. "/NCG-EQAS-participant-screen"
+    const url  = `${base}/${rel}`.replace(/\/+/g, '/');
 
-  try {
-    const res = await fetch(url, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      const html = await res.text();
 
-    const html = await res.text();
+      // Parse and safely rewrite URLs
+      const tpl = document.createElement('template');
+      tpl.innerHTML = html;
 
-    // Parse the fetched fragment so we can rewrite URLs safely
-    const tpl = document.createElement('template');
-    tpl.innerHTML = html;
+      const rewrite = (el, attr) => {
+        const v = el.getAttribute(attr);
+        if (!v) return;
 
-    // Rewriter: prefix relative src/href, remove ./ and ../ safely
-    const rewrite = (el, attr) => {
-      const v = el.getAttribute(attr);
-      if (!v) return;
+        // Absolute/external/hash → leave as is
+        if (/^(https?:)?\/\//i.test(v) || v.startsWith('data:') || v.startsWith('#')) return;
 
-      // absolute/external/hash → leave alone
-      if (/^(https?:)?\/\//i.test(v) || v.startsWith('data:') || v.startsWith('#')) return;
+        let out = v;
 
-      // ROOT-relative (starts with single "/") → prefix with base
-      if (v.startsWith('/')) {
-        // avoid turning '//' (protocol-relative) into '/base//...'
-        el.setAttribute(attr, `${base}${v}`.replace(/\/+/g, '/'));
-        return;
-      }
+        if (v.startsWith('/')) {
+          // Root-relative → prefix repo base
+          out = `${base}${v}`;
+        } else {
+          // Plain relative → clean ./ and ../ then prefix base
+          let cleaned = v.replace(/^(\.\/)+/, '');
+          while (cleaned.startsWith('../')) cleaned = cleaned.slice(3);
+          out = `${base}/${cleaned}`;
+        }
 
-      // plain relative → strip ./ and ../ then prefix with base
-      let cleaned = v.replace(/^(\.\/)+/, '');
-      while (cleaned.startsWith('../')) cleaned = cleaned.slice(3);
-      el.setAttribute(attr, `${base}/${cleaned}`.replace(/\/+/g, '/'));
-    };
+        out = out.replace(/\/+/g, '/');
 
+        // Dev aid: see what changed (open DevTools → Console)
+        if (v !== out) console.log('[include] rewrite', attr, v, '→', out);
 
-    // Rewrite links & images inside the fragment
-    tpl.content.querySelectorAll('[src]').forEach(n => rewrite(n, 'src'));
-    tpl.content.querySelectorAll('[href]').forEach(n => rewrite(n, 'href'));
+        el.setAttribute(attr, out);
+      };
 
-    host.innerHTML = '';
-    host.appendChild(tpl.content);
+      tpl.content.querySelectorAll('[src]').forEach(n => rewrite(n, 'src'));
+      tpl.content.querySelectorAll('[href]').forEach(n => rewrite(n, 'href'));
 
-  } catch (err) {
-    console.error('[include] failed:', url, err);
+      host.innerHTML = '';
+      host.appendChild(tpl.content);
+    } catch (err) {
+      console.error('[include] failed:', url, err);
+    }
   }
-}
-
 
   function markActive() {
     const segs = location.pathname.split('/').filter(Boolean);
     let keySeg = segs[segs.length - 1] || '';
-    if (keySeg.includes('.')) keySeg = segs[segs.length - 2] || keySeg; // use folder, not file
+    if (keySeg.includes('.')) keySeg = segs[segs.length - 2] || keySeg; // prefer folder
     const folder = decodeURIComponent(keySeg).toLowerCase();
 
     document.querySelectorAll('#sidebarMenu a[data-link]').forEach(a => {
@@ -71,18 +79,6 @@
       if (key && (folder === key || folder.includes(key))) {
         a.classList.add('text-primary');
         a.classList.remove('text-white');
-      }
-    });
-
-    // If using collapsible groups, auto-open the active one
-    document.querySelectorAll('#sidebarMenu a.text-primary').forEach(a => {
-      const col = a.closest('.collapse');
-      if (col && !col.classList.contains('show')) {
-        col.classList.add('show');
-        const trigger = document.querySelector(
-          `[href="#${col.id}"][data-bs-toggle="collapse"]`
-        );
-        if (trigger) trigger.setAttribute('aria-expanded', 'true');
       }
     });
   }

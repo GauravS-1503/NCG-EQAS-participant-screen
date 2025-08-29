@@ -81,7 +81,7 @@
               <td style="text-align: center;">27</td>
               <td style="text-align: center;">ER</td>
               <td style="text-align: center;">view</td>
-              <td style="text-align: center;">Sample yet to be dispatched</td>
+              <td style="text-align: center;">Run completed</td>
             </tr>
             <tr>
               <td style="text-align: center;">2025</td>
@@ -837,6 +837,7 @@
       }
     });
   });
+  
 
   function renderReceiveHeader() {
     const th = document.getElementById('ihctableHeader');
@@ -1043,27 +1044,48 @@
     }
   }
 
+  const firstRow = document.querySelector('#statusTableBody tr');
+  if (firstRow) firstRow.classList.add('table-success');
 
   function confirmReceive(button) {
-  const row = button.closest('tr');
-  const courierCell = row.querySelector('td:nth-child(1)');
-  const trackingCell = row.querySelector('td:nth-child(3)');
+    const row = button.closest('tr');
+    const courierCell  = row.querySelector('td:nth-child(1)');
+    const trackingCell = row.querySelector('td:nth-child(3)');
 
-  const isSendTab = document.querySelector('.bucket-tab.active-tab').dataset.status === 'send';
-  const courier = isSendTab ? courierCell.querySelector('input')?.value.trim() : courierCell.innerText.trim();
-  const trackingId = isSendTab ? trackingCell.querySelector('input')?.value.trim() : trackingCell.innerText.trim();
+    const activeTab = document.querySelector('.bucket-tab.active-tab');
+    const isSendTab = activeTab && activeTab.dataset.status === 'send';
 
-  const message = isSendTab
-    ? `Do you want to mark the sample as sent?`
-    : `Do you want to mark the sample from "${courier}" (Tracking ID: ${trackingId}) as received?`;
+    const courier    = isSendTab ? courierCell.querySelector('input')?.value.trim()  : courierCell.innerText.trim();
+    const trackingId = isSendTab ? trackingCell.querySelector('input')?.value.trim() : trackingCell.innerText.trim();
 
-  if (confirm(message)) {
+    const message = isSendTab
+      ? `Do you want to mark the sample as sent?`
+      : `Do you want to mark the sample from "${courier}" (Tracking ID: ${trackingId}) as received?`;
+
+    if (!confirm(message)) return;
+
+    // Update confirm button UI/state
     button.textContent = isSendTab ? 'Sent' : 'Received';
     button.classList.remove('btn-success');
     button.classList.add('btn-secondary');
     button.disabled = true;
+
+    // 🔁 If we're in Send tab, create/ensure a refresh button and tag the confirm button
+    if (isSendTab) {
+      button.classList.add('btn-sent'); // <-- your refresh handler looks for this
+      const cell = button.parentElement;
+
+      // Avoid duplicates
+      if (!cell.querySelector('.btn-refresh')) {
+        const refresh = document.createElement('button');
+        refresh.type = 'button';
+        refresh.className = 'btn btn-outline-secondary btn-sm ms-2 btn-refresh';
+        refresh.innerHTML = '<i class="bi bi-arrow-clockwise"></i>';
+        cell.appendChild(refresh);
+      }
+    }
   }
-}
+
   const scoreOptions = [
     "SELECT",
     "Negative 0",
@@ -1076,6 +1098,34 @@
     "Tissue depleted",
     "Others, Then specify"
   ];
+
+
+
+
+  document.addEventListener('click', (e) => {
+    const refreshBtn = e.target.closest('.btn-refresh');
+    if (!refreshBtn) return;
+
+    const row = refreshBtn.closest('tr');
+    const courierInput  = row.querySelector('.courier-cell input');
+    const trackingInput = row.querySelector('.tracking-cell input');
+    const confirmBtn    = row.querySelector('.btn-sent');
+
+    // Clear inputs so new details can be entered
+    if (courierInput)  courierInput.value  = '';
+    if (trackingInput) trackingInput.value = '';
+
+    // Restore confirm button to ✓ (green & enabled)
+    if (confirmBtn) {
+      confirmBtn.textContent = '✓';
+      confirmBtn.classList.remove('btn-secondary', 'btn-sent');
+      confirmBtn.classList.add('btn-success');
+      confirmBtn.disabled = false;
+    }
+
+    // Remove the refresh button
+    refreshBtn.remove();
+  });
 
   function buildResultRows() {
     const tbody = document.getElementById('resultRows');
