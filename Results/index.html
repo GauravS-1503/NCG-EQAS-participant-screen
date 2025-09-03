@@ -44,6 +44,14 @@
           <option value="2025">2025</option>
           <option value="2026">2026</option>
         </select>
+
+        <!-- Hidden until a year is chosen -->
+        <a id="downloadParticipationBtn"
+          class="btn btn-sm btn-outline-primary d-none"
+          href="#"
+          download>
+          <i class="bi bi-download me-1"></i>Download Module Participation Report
+        </a>
       </div>
 
       <table id="resultsTable" class="table table-bordered table-striped mb-0">
@@ -361,6 +369,60 @@
         </tr>`;
       heBody.style.display = 'table-row-group';
     }
+
+
+    updateParticipationButton();
+  }
+
+
+
+
+  const PARTICIPATION_REPORTS = {
+    "IHC": {
+      "2025": "./reports/ihc_participation_2025.pdf",
+      "2026": "./reports/ihc_participation_2026.pdf"
+    },
+    "TSP": {
+      "2025": "./reports/tsp_participation_2025.pdf",
+      "2026": "./reports/tsp_participation_2026.pdf"
+    },
+    "H&E": {
+      "2025": "./reports/he_participation_2025.pdf",
+      "2026": "./reports/he_participation_2026.pdf"
+    }
+  };
+
+  function currentActiveTab() {
+    const el = document.querySelector('.bucket-tab.active-tab');
+    return el ? el.dataset.status : null;
+  }
+
+  function updateParticipationButton() {
+    const yearSel = document.getElementById('moduleSelect');
+    const btn = document.getElementById('downloadParticipationBtn');
+    if (!yearSel || !btn) return;
+
+    const year = yearSel.value;
+    const tab  = currentActiveTab();
+
+    // Show only on data tabs (not Performance) and when a specific year is chosen
+    if (tab && tab !== 'Performance' && year && year !== 'All') {
+      const href = (PARTICIPATION_REPORTS[tab] || {})[year];
+
+      if (href) {
+        btn.classList.remove('d-none');
+        btn.setAttribute('href', href);
+        // Optional: tailor filename
+        btn.setAttribute('download', `${tab.toLowerCase()}_participation_${year}.pdf`);
+      } else {
+        // No file mapped for this (tab,year) – hide button
+        btn.classList.add('d-none');
+        btn.removeAttribute('href');
+      }
+    } else {
+      btn.classList.add('d-none');
+      btn.removeAttribute('href');
+    }
   }
 
 
@@ -461,6 +523,11 @@
   document.addEventListener('DOMContentLoaded', () => {
     const go = document.getElementById('goBtn');
     if (go) go.addEventListener('click', renderCharts);
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const yearSel = document.getElementById('moduleSelect');
+    if (yearSel) yearSel.addEventListener('change', updateParticipationButton);
   });
 
   
