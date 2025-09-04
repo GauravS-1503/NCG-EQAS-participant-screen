@@ -32,7 +32,7 @@
                     <div id="chargesTableCard">
                         <div class="card overflow-hidden">
                             <div class="card-body">
-                                <h5 class="mb-4 fw-bold text-primary">Charges per module</h5>
+                                <h5 class="mb-4 fw-bold text-primary">Charges per module (Not applicable for NCG Centers)</h5>
                                 <div class="table-responsive">
                                     <table class="table table-bordered align-middle text-center">
                                         <thead class="table-light">
@@ -335,13 +335,13 @@ ncgSelect.addEventListener('change', () => {
 
     if (isNCG) {
         chargesSection.style.display = 'none';
-        chargesTableCard.style.display = 'none';
+        chargesTableCard.style.display = '';
         submitBtn.hidden = false;  
         submitBtn.textContent = 'Submit';
         priceSpans.forEach(span => span.style.display = 'none');
 
         // Hide paycard too
-        document.getElementById("paycard").style.display = "none";
+        // document.getElementById("paycard").style.display = "none";
         payDetails1.style.display = "none";
         payDetails2.style.display = "none";
         payDetails3.style.display = "none";
