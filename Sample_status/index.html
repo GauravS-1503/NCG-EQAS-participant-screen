@@ -15,6 +15,8 @@
   <style>
     .bucket-tab { display:inline-flex; align-items:center; gap:.4rem; }
     .bucket-badge { font-size:12px; }
+
+    
   </style>
 
 </head>
@@ -250,7 +252,7 @@
                 </button>
               </td>
               <td class="text-center enter-results">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-ER">
                   Enter Results
                 </button>
               </td>  
@@ -265,7 +267,7 @@
                 </button>
               </td>
               <td class="text-center enter-results">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-PR">
                   Enter Results
                 </button>
               </td>
@@ -280,7 +282,7 @@
                 </button>
               </td>
               <td class="text-center enter-results">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-HER2">
                   Enter Results
                 </button>
               </td>
@@ -295,7 +297,7 @@
                 </button>
               </td>
               <td class="text-center enter-results">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-LYM">
                   Enter Results
                 </button>
               </td> 
@@ -310,7 +312,7 @@
                 </button>
               </td>
               <td class="text-center enter-results">
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resultModal">
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-MISC">
                   Enter Results
                 </button>
               </td> 
@@ -537,7 +539,7 @@
       
       <!-- Dark Blue Header with Close Button -->
       <div class="d-flex justify-content-between align-items-center" style="background-color: #2f3e63; color: white; padding: 14px 20px;">
-        <h4 class="modal-title mb-0 fw-semibold" id="protocolModalLabel">Enter Protocol</h4>
+        <h4 class="modal-title mb-0 fw-semibold" id="protocolModalLabel">Protocol</h4>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       
@@ -645,30 +647,343 @@
           <input type="number" class="form-control" id="incubationTemp" placeholder="Enter temperature in °C">
         </div>
 
-        <h5 class="fw-semibold mt-3">Epitope Retrieval (HIER)</h5>
+        <div class="row g-3" id="hierSection">
+          <h5 class="fw-semibold mt-3">Epitope Retrieval (HIER)</h5>
+          <div class="mb-1">
+            <select id="hierEnable" class="form-select">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
 
-        <h5 class="fw-semibold mt-3">Epitope Retrieval (Proteolysis)</h5>
+          <!-- Details hidden when Epitope Retrieval = No -->
+          <div class="col-12" id="hierDetails">
+            <div class="row g-3 mt-0">
 
-        <h5 class="fw-semibold mt-3">Visualization System</h5>
+              <div class="col-md-6">
+                <label for="hierDevice" class="form-label">Device</label>
+                <select id="hierDevice" class="form-select">
+                  <option value="">Select</option>
+                  <option>On Board/On machine</option>
+                  <option>PT Link /PT module</option>
+                  <option>Microwave Oven</option>
+                  <option>Pressure cooker</option>
+                  <option>Water Bath</option>
+                  <option>Pascal</option>
+                  <option>Declocking chamber</option>
+                  <option>Others (add specify)</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 d-none" id="hierDeviceOtherWrap">
+                <label for="hierDeviceOther" class="form-label">Please specify device</label>
+                <input id="hierDeviceOther" class="form-control" placeholder="Enter device">
+              </div>
+
+              <div class="col-md-6">
+                <label for="hierBuffer" class="form-label">HIER Buffer</label>
+                <select id="hierBuffer" class="form-select">
+                  <option value="">Select</option>
+                  <option>Std - Tris-EDTA pH9 (-)</option>
+                  <option>Std - EDTA pH8 (-)</option>
+                  <option>Std - Citrate pH6 (-)</option>
+                  <option>Ventana - CC1</option>
+                  <option>Ventana - CC2</option>
+                  <option>Ventana Ultra CC1</option>
+                  <option>Ventana Ultra CC2</option>
+                  <option>Dako - TRS High pH</option>
+                  <option>Dako - TRS Low pH</option>
+                  <option>Dako - Citrate Low pH</option>
+                  <option>Leica Bond Epitope Retrival Solution 1</option>
+                  <option>Leica Bond Epitope Retrival Solution 2</option>
+                  <option>Leica BOND - PRIME Epitope Retrival Solution 1</option>
+                  <option>Leica BOND - PRIME Epitope Retreival Solution 2</option>
+                  <option>Sakura -Tissue -Tek Genie High  pH</option>
+                  <option>Sakura -Tissue -Tek Genie Citrate Antigen Retreival</option>
+                  <option>Others,Then Specify</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 d-none" id="hierBufferOtherWrap">
+                <label for="hierBufferOther" class="form-label">Buffer name (if Others)</label>
+                <input id="hierBufferOther" class="form-control" placeholder="Enter buffer name">
+              </div>
+
+              <div class="col-md-6">
+                <label for="hierTime" class="form-label">Efficient Heating Time (Minutes)</label>
+                <input type="number" id="hierTime" class="form-control" placeholder="e.g., 20">
+              </div>
+
+              <div class="col-md-6">
+                <label for="hierTemp" class="form-label">Max. heating temperature (Celcius)</label>
+                <input type="number" id="hierTemp" class="form-control" placeholder="e.g., 97">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Epitope Retrieval (Proteolysis) -->
+        <div class="row g-3" id="proteolysisSection">
+          <h5 class="fw-semibold mt-4">Epitope Retrieval (Proteolysis)</h5>
+          <div class="mb-1">
+            <select id="proteolysisEnable" class="form-select">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <!-- Details hidden when proteolysis = No -->
+          <div class="col-12" id="proteolysisDetails">
+            <div class="row g-3 mt-0">
+
+              <div class="col-md-6">
+                <label for="proteolysisEnzyme" class="form-label">Proteolysis Enzyme</label>
+                <select id="proteolysisEnzyme" class="form-select">
+                  <option value="">Select</option>
+                  <option>Dako - Pepsin</option>
+                  <option>Dako - Proteinase K</option>
+                  <option>Dako - Proteinase K, Ready-To-Use</option>
+                  <option>Dako - Proteinase K, Dako Real</option>
+                  <option>Dako - Proteolytic Enzyme, Ready-To-Use</option>
+                  <option>Leica - Bond, Enzyme Pretreatment Kit</option>
+                  <option>Ventana - Protease 1</option>
+                  <option>Ventana - Protease 2</option>
+                  <option>Ventana - Protease 3</option>
+                  <option>Sakura - Tissue-Tek-enie Proteinase K</option>
+                  <option>Others (add specify)</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 d-none" id="proteolysisEnzymeOtherWrap">
+                <label for="proteolysisEnzymeOther" class="form-label">Please specify enzyme</label>
+                <input id="proteolysisEnzymeOther" class="form-control" placeholder="Enter Enzyme Name">
+              </div>
+
+            
+
+              <div class="col-md-6">
+                <label for="proteolysisTime" class="form-label">Proteolysis Time (Minutes)</label>
+                <input type="number" id="proteolysisTime" class="form-control" placeholder="e.g., 20">
+              </div>
+
+              <div class="col-md-6">
+                <label for="proteolysisTemp" class="form-label">Proteolysis temperature (Celcius)</label>
+                <input type="number" id="proteolysisTemp" class="form-control" placeholder="e.g., 97">
+              </div>
+
+              <div class="col-md-6">
+                <label for="proteolysisheatingtime" class="form-label">Heating Time (Minutes)</label>
+                <input type="number" id="proteolysisheatingtime" class="form-control" placeholder="e.g., 20">
+              </div>
+
+              <div class="col-md-6">
+                <label for="proteolysisheatingtemp" class="form-label">Heating temperature (Celcius)</label>
+                <input type="number" id="proteolysisheatingtemp" class="form-control" placeholder="e.g., 97">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        
+        <h5 class="fw-semibold mt-3">Visualization Systm</h5>
+
+        <div id="vizAuto" class="row g-3">
+          <div class="mb-3">
+            <label for="vizSystemAuto" class="form-label">Visualization System</label>
+            <select id="vizSystemAuto" class="form-select">
+              <option value="">Select</option>
+              <option>OptiView DAB IHC Detection Kit</option>
+              <option>UltraView Universal DAB Detection Kit</option>
+              <option>UltraView Universal Alkaline Phosphated Red Detection Kit</option>
+              <option>Iview DAB Detection kit</option>
+              <option>EnVison+,Mouse</option>
+              <option>EnVison+,Rabbit</option>
+              <option>EnVision FLEX</option>
+              <option>REAL Envision Rabbit/ Mouse</option>
+              <option>Tissue - Tek Genie Pro Detection Kit DAB</option>
+              <option>Tissue - Tek Genie Pro AP Red Detection Kit</option>
+              <option>Bond Refine</option>
+              <option>Bond Plymer Refine Red Detection</option>
+              <option>BOND-PRIME Polymer DAB Detection System</option>
+              <option>BOND-PRIME Polymer AP Detection System</option>
+              <option>Others,Then Specify</option>
+            </select>
+          </div>
+          <div class="mb-3 d-none" id="vizSystemAutoOtherWrap">
+            <input id="vizSystemAutoOther" class="form-control" placeholder="Specify Visualization System">
+          </div>
+
+          <div class="mb-3">
+            <label for="vizLinker" class="form-label">Linker</label>
+            <select id="vizLinker" class="form-select">
+              <option>Linker Mouse</option>
+              <option>Linker Rabbit</option>
+              <option>None</option>
+              <option>Others,Then Specify</option>
+            </select>
+          </div>
+          <div class="mb-3 d-none" id="vizLinkerOtherWrap">
+            <input id="vizLinkerOther" class="form-control" placeholder="Specify Linker">
+          </div>
+
+          <div class="mb-3">
+            <label for="vizAmplification" class="form-label">Amplification</label>
+            <select id="vizAmplification" class="form-select">
+              <option>OptiView Amplification Kit</option>
+              <option>UltraView/iView Amplification Kit</option>
+              <option>None</option>
+              <option>Others,Then Specify</option>
+            </select>
+          </div>
+          <div class="mb-3 d-none" id="vizAmplificationOtherWrap">
+            <input id="vizAmplificationOther" class="form-control" placeholder="Specify Amplification">
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-4"><input id="ampName" class="form-control" placeholder="Amplification Name"></div>
+            <div class="col-md-4"><input id="ampProducer" class="form-control" placeholder="Amplification Producer"></div>
+            <div class="col-md-4"><input id="ampProductNumber" class="form-control" placeholder="Amplification Product Number"></div>
+            <div class="col-md-4"><input id="incubationLinker" type="number" class="form-control" placeholder="Incubation Time linker (min)"></div>
+            <div class="col-md-4"><input id="incubationAmplification" type="number" class="form-control" placeholder="Incubation Time amplification (min)"></div>
+            <div class="col-md-4"><input id="incubationPolymer" type="number" class="form-control" placeholder="Incubation Time polymer (min)"></div>
+            <div class="col-md-4"><input id="incubationTempPolymer" type="number" class="form-control" placeholder="Incubation Temperature (°C)"></div>
+          </div>
+        </div>
+
+        <!-- Manual/Others -->
+        <div id="vizManual" class="d-none">
+          <div class="mb-3">
+            <label for="vizMethod" class="form-label">Method</label>
+            <select id="vizMethod" class="form-select">
+              <option>2- Layer Technique</option>
+              <option>3- Layer Technique</option>
+              <option>Biotin-Based</option>
+              <option>None</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="vizSystemManual" class="form-label">Visualization System - Name</label>
+            <select id="vizSystemManual" class="form-select">
+              <option>OptiView DAB IHC Detection Kit</option>
+              <option>UltraView Universal DAB Detection Kit</option>
+              <option>UltraView Universal Alkaline Phosphated Red Detection Kit</option>
+              <option>Iview DAB Detection kit</option>
+              <option>EnVison+,Mouse</option>
+              <option>EnVison+,Rabbit</option>
+              <option>EnVision FLEX</option>
+              <option>REAL Envision Rabbit/ Mouse</option>
+              <option>Tissue - Tek Genie Pro Detection Kit DAB</option>
+              <option>Tissue - Tek Genie Pro AP Red Detection Kit</option>
+              <option>Bond Refine</option>
+              <option>Bond Plymer Refine Red Detection</option>
+              <option>BOND-PRIME Polymer DAB Detection System</option>
+              <option>BOND-PRIME Polymer AP Detection System</option>
+              <option>Others,Then Specify</option>
+            </select>
+          </div>
+          <div class="mb-3 d-none" id="vizSystemManualOtherWrap">
+            <input id="vizSystemManualOther" class="form-control" placeholder="Specify Visualization System">
+          </div>
+
+          <div class="mb-3">
+            <label for="vizProducer" class="form-label">Visualization System - Producer</label>
+            <select id="vizProducer" class="form-select">
+              <option>DAB UV KITS</option>
+              <option>DAB OV KITS</option>
+              <option>DAKO FLEX KITS</option>
+              <option>Other (please specify)</option>
+            </select>
+          </div>
+          <div class="mb-3 d-none" id="vizProducerOtherWrap">
+            <input id="vizProducerOther" class="form-control" placeholder="Specify Producer">
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-4"><input id="vizProductNumber" class="form-control" placeholder="Visualization System - Product Number"></div>
+            <div class="col-md-4"><input id="vizIncubationTime" type="number" class="form-control" placeholder="Incubation Time (min)"></div>
+            <div class="col-md-4"><input id="vizIncubationTemp" type="number" class="form-control" placeholder="Incubation Temperature (°C)"></div>
+          </div>
+        </div>
 
         <h5 class="fw-semibold mt-3">Chromogen</h5>
+          <div id="chromogen" class="row g-3">
+            <div class="mb-3">
+              <label for="chromotype" class="form-label">Chromogen</label>
+              <select id="chromotype" class="form-select">
+                <option value="">Select</option>
+                <option>DAB</option>
+                <option>Dako-HRP Magenta Substrate Chromogen System</option>
+                <option>UltraView DAB Detection kit</option>
+                <option>UltraView/iView Amplification Kit </option>
+                <option>OptiView Amplification Kit</option>
+                <option>Others,Then Specify</option>
+              </select>
+            </div>
+          </div>
+          <div class="row g-3 d-none" id="chromoOtherWrap">
+            <div class="col-md-6">
+              <input id="chromoName" class="form-control" placeholder="Chromogen Name">
+            </div>
+            <div class="col-md-6">
+              <input id="chromoProducer" class="form-control" placeholder="Chromogen Producer">
+            </div>
+            <div class="col-md-6">
+              <input id="chromoProductNumber" class="form-control" placeholder="Chromogen Product Number">
+            </div>
+            <div class="col-md-6">
+              <input id="chromoTime" type="number" class="form-control" placeholder="Incubation Time (minutes)">
+            </div>
+            <div class="col-md-6">
+              <input id="chromoTemp" type="number" class="form-control" placeholder="Incubation Temperature (°C)">
+            </div>
+          </div>  
+
+        
 
         <h5 class="fw-semibold mt-3">Enhancement</h5>
+        <div id="enhancementSection" class="row g-3">
+          <div class="mb-3">
+            <label for="enhancementSelect" class="form-label">Enhancement</label>
+            <select id="enhancementSelect" class="form-select">
+              <option value="">Select</option>
+              <option>CuSO4</option>
+              <option>Others</option>
+              <option>None</option>
+            </select>
+          </div>
+
+          <!-- Only shown when Enhancement = Others -->
+          <div class="col-md-6 d-none" id="enhanceOtherWrap">
+            <label for="enhanceOther" class="form-label">Enhancement (others)</label>
+            <input id="enhanceOther" class="form-control" placeholder="Please Specify">
+          </div>
+        </div>
+
+        <h5 class="fw-semibold mt-3">Scoring</h5>
+        <div id="scoringSection" class="row g-3">
+          <div class="mb-3">
+            <select id="scoringSelect" class="form-select">
+              <option value="">Select</option>
+              <option>ALLRED Score</option>
+              <option>H-Score</option>
+            </select>
+          </div>
+        </div>  
+        
 
         <h5 class="fw-semibold mt-3">Comments</h5>
+        <div style="max-width: 500px; width: 100%;">
+          <textarea id="comments" class="form-control" rows="3" placeholder="Comments added by participants.."></textarea>
+        </div>
       </div>
-
-
-      <!-- Footer -->
-      <div class="modal-footer border-0 px-4 py-3">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-primary">Submit</button>
-      </div>
-
     </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="heresultModaldigital" tabindex="-1" aria-labelledby="heresultModaldigitalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document" style="max-width: 900px;">
@@ -817,6 +1132,1529 @@
         <button type="button" class="btn btn-primary">Submit</button>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<div class="modal fade enter-result-modal" id="modal-ER" data-sub="ER" tabindex="-1" aria-labelledby="label-ER" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="max-width:900px;">
+    <div class="modal-content p-0" style="border-radius:12px; overflow:hidden;">
+      <div class="d-flex justify-content-between align-items-center" style="background:#2f3e63;color:#fff;padding:14px 20px;">
+        <h4 class="modal-title mb-0 fw-semibold" id="label-ER">Enter Results – ER</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body bg-white px-4 py-3">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width:18%;">Core No.</th>
+                <th style="width:28%;">Select Score</th>
+              </tr>
+            </thead>
+            <tbody id="rows-ER">
+              <tr>
+                <td>Core 1</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 2</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 3</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 4</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 5</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 6</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 7</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 8</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>  
+              <tr>
+                <td>Core 9</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr> 
+                <td>Core 10</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 11</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 12</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
+        <!--<div style="max-width:500px; width:100%;">
+          <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
+          <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
+        </div> -->
+      </div>
+
+      <div class="modal-footer border-0 px-4 py-3">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-save" data-sub="ER">Save</button>
+        <button type="button" class="btn btn-primary btn-submit" data-sub="ER">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PR Modal ===== (IDs & data-sub changed) -->
+<div class="modal fade enter-result-modal" id="modal-PR" data-sub="PR" tabindex="-1" aria-labelledby="label-PR" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="max-width:900px;">
+    <div class="modal-content p-0" style="border-radius:12px; overflow:hidden;">
+      <div class="d-flex justify-content-between align-items-center" style="background:#2f3e63;color:#fff;padding:14px 20px;">
+        <h4 class="modal-title mb-0 fw-semibold" id="label-PR">Enter Results – PR</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body bg-white px-4 py-3">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width:18%;">Core No.</th>
+                <th style="width:28%;">Select Score</th>
+              </tr>
+            </thead>
+            <tbody id="rows-PR">
+              <tr>
+                <td>Core 1</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 2</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 3</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 4</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 5</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 6</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 7</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 8</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>  
+              <tr>
+                <td>Core 9</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr> 
+                <td>Core 10</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 11</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 12</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                          <option>Select</option>        
+                          <option>Negative</option>
+                          <option>3/8</option>
+                          <option>4/8</option>
+                          <option>5/8</option>
+                          <option>6/8</option>
+                          <option>7/8</option>
+                          <option>8/8</option>
+                          <option>Lymph Node</option>
+                          <option>Control</option>
+                          <option>Blank</option>
+                          <option>Others</option>
+                    </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
+        <!--<div style="max-width:500px; width:100%;">
+          <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
+          <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
+        </div> -->
+      </div>
+
+      <div class="modal-footer border-0 px-4 py-3">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-save" data-sub="PR">Save</button>
+        <button type="button" class="btn btn-primary btn-submit" data-sub="PR">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HER2/Neu ===== -->
+<div class="modal fade enter-result-modal" id="modal-HER2" data-sub="HER2" tabindex="-1" aria-labelledby="label-PR" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="max-width:900px;">
+    <div class="modal-content p-0" style="border-radius:12px; overflow:hidden;">
+      <div class="d-flex justify-content-between align-items-center" style="background:#2f3e63;color:#fff;padding:14px 20px;">
+        <h4 class="modal-title mb-0 fw-semibold" id="label-PR">Enter Results – Her2/Neu</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body bg-white px-4 py-3">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width:18%;">Core No.</th>
+                <th style="width:28%;">Select Score</th>
+              </tr>
+            </thead>
+            <tbody id="rows-PR">
+              <tr>
+                <td>Core 1</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 2</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 3</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 4</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 5</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 6</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 7</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 8</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>  
+              <tr>
+                <td>Core 9</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr> 
+                <td>Core 10</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 11</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>  
+                <td>Core 12</td>              
+                <td class = "select" ALIGN="center">      
+                    <select class="form-select">
+                        <option>Select</option>        
+                        <option>Negative 0</option>
+                        <option>Negative 1+</option>
+                        <option>Equivocal 2+</option>
+                        <option>Positive 3+</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Uninterpretable</option>
+                        <option>Tissue Depleted</option>
+                        <option>Others</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
+        <!--<div style="max-width:500px; width:100%;">
+          <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
+          <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
+        </div> -->
+      </div>
+
+      <div class="modal-footer border-0 px-4 py-3">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-save" data-sub="HER2">Save</button>
+        <button type="button" class="btn btn-primary btn-submit" data-sub="HER2">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Lymphoma ===== -->
+<div class="modal fade enter-result-modal" id="modal-LYM" data-sub="LYM" tabindex="-1" aria-labelledby="label-LYM" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="max-width:900px;">
+    <div class="modal-content p-0" style="border-radius:12px; overflow:hidden;">
+      <div class="d-flex justify-content-between align-items-center" style="background:#2f3e63;color:#fff;padding:14px 20px;">
+        <h4 class="modal-title mb-0 fw-semibold" id="label-LYM">Enter Results – Lymphoma</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body bg-white px-4 py-3">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width:18%;">Core No.</th>
+                <th style="width:18%;">Questionnaire</th>
+                <th style="width:28%;">Enter Score</th>
+              </tr>
+            </thead>
+            <tbody id="rows-LYM">
+              <tr>
+              <td>Core 1</td>
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 2</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 3</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 4</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 5</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 6</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 7</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 8</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 9</td>              
+             <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 10</td>              
+             <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 11</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 12</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    
+
+      <div class="modal-footer border-0 px-4 py-3">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-save" data-sub="LYM">Save</button>
+        <button type="button" class="btn btn-primary btn-submit" data-sub="LYM">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Miscellaneous ===== -->
+<div class="modal fade enter-result-modal" id="modal-MISC" data-sub="MISC" tabindex="-1" aria-labelledby="label-MISC" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="max-width:900px;">
+    <div class="modal-content p-0" style="border-radius:12px; overflow:hidden;">
+      <div class="d-flex justify-content-between align-items-center" style="background:#2f3e63;color:#fff;padding:14px 20px;">
+        <h4 class="modal-title mb-0 fw-semibold" id="label-LYM">Enter Results – Miscellaneous</h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body bg-white px-4 py-3">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width:18%;">Core No.</th>
+                <th style="width:18%;">Questionnaire</th>
+                <th style="width:28%;">Enter Score</th>
+              </tr>
+            </thead>
+            <tbody id="rows-MISC">
+              <tr>
+              <td>Core 1</td>
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 2</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 3</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 4</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 5</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 6</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 7</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 8</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 9</td>              
+             <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 10</td>              
+             <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 11</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Core 12</td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Interpret in Predominant Population of Cells</option>
+                        <option>Interpret in Large Cells</option>
+                        <option>Interpret in Tumor Cells</option>
+                        <option>Interpret in Abnormal Cells</option>
+                        <option>Lymph Node</option>
+                        <option>Blank</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+              <td class = "select" ALIGN="center">      
+                  <select class="form-select">
+                        <option>Select</option>        
+                        <option>Positive</option>
+                        <option>Negative</option>
+                        <option>Uninterpretable</option>
+                        <option>No Tumor</option>
+                        <option>Lymph node</option>
+                        <option>Blank</option>
+                        <option>Control</option>
+                        <option>Others</option>
+                  </select>
+              </td>              
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    
+
+      <div class="modal-footer border-0 px-4 py-3">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-save" data-sub="MISC">Save</button>
+        <button type="button" class="btn btn-primary btn-submit" data-sub="MISC">Submit</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1204,5 +3042,873 @@
   });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // --- 1) Normalize submodule names coming from buttons/rows ---
+  const NORM = (s) => {
+    const t = String(s||'').toLowerCase().replace(/\s+/g,'').replace(/[^a-z0-9]/g,'');
+    if (t === 'er') return 'ER';
+    if (t === 'pr') return 'PR';
+    if (t.startsWith('her2') || t.startsWith('herneu') || t.startsWith('her2neu')) return 'HER2';
+    if (t.startsWith('lymph')) return 'LYMPHOMA';
+    if (t.startsWith('misc')) return 'MISC';
+    return 'ER';
+  };
+  const DISPLAY = { ER:'ER', PR:'PR', HER2:'HER2/Neu', LYMPHOMA:'Lymphoma', MISC:'Miscellaneous' };
+
+  // --- 2) Default (editable) values per submodule. Tweak these anytime. ---
+  const defaultsByKey = {
+    ER: {
+      stainingPlatform: 'Ventana Benchmark Ultra',
+      cloneType: 'Ready to use',
+      lotNumber: 'L-ER-1029',
+      dilutionFactor: 'RTU',
+      dilutionBuffer: 'Ventana - Antibody Diluent Buffer',
+      incubationTime: 24,
+      incubationTemp: 37,
+      hierEnable: 'Yes',
+      hierDevice: 'PT Link /PT module',
+      hierDeviceOther: '',
+      hierBuffer: 'Std - Tris-EDTA pH9 (-)',
+      hierBufferOther: '',
+      hierTime: 20,
+      hierTemp: 97,
+      proteolysisEnable: 'Yes',
+      proteolysisDetails: 'Dako - Pepsin',
+      proteolysisEnzymeOther: '',
+      proteolysisTime: 20,
+      proteolysisTemp: 37,
+      proteolysisheatingtime: 20,
+      proteolysisheatingtemp: 97,
+      vizMode: 'AUTO',
+       
+
+      // AUTO fields
+      vizSystemAuto: 'OptiView DAB IHC Detection Kit',
+      vizSystemAutoOther: '',
+      vizLinker: 'None',
+      vizLinkerOther: '',
+      vizAmplification: 'None',
+      vizAmplificationOther: '',
+      ampName: '',
+      ampProducer: '',
+      ampProductNumber: '',
+      incubationLinker: '',
+      incubationAmplification: '',
+      incubationPolymer: '',
+      incubationTempPolymer: '',
+
+      // MANUAL fields
+      vizMethod: '2- Layer Technique',
+      vizSystemManual: 'OptiView DAB IHC Detection Kit',
+      vizSystemManualOther: '',
+      vizProducer: 'DAB UV KITS',
+      vizProducerOther: '',
+      vizProductNumber: '',
+      vizIncubationTime: '',
+      vizIncubationTemp: '',
+      chromotype: 'DAB',          // or '', if you want blank by default
+      chromoName: '',
+      chromoProducer: '',
+      chromoProductNumber: '',
+      chromoTime: '',
+      chromoTemp: '',
+      Enhancement: 'CuSO4'
+    },
+    PR: {
+      stainingPlatform: 'Leica BOND III',
+      cloneType: 'Concentrated',
+      lotNumber: 'PR-7781',
+      dilutionFactor: '1:100',
+      dilutionBuffer: 'Leica - Bond Primary Antibody Diluent',
+      incubationTime: 20,
+      incubationTemp: 25,
+      hierEnable: 'Yes',
+      hierDevice: 'PT Link /PT module',
+      hierDeviceOther: '',
+      hierBuffer: 'Std - Citrate pH6 (-)',
+      hierBufferOther: '',
+      hierTime: 20,
+      hierTemp: 97,
+      proteolysisEnable: 'Yes',
+      proteolysisDetails: 'Dako - Pepsin',
+      proteolysisEnzymeOther: '',
+      proteolysisTime: 20,
+      proteolysisTemp: 37,
+      proteolysisheatingtime: 20,
+      proteolysisheatingtemp: 97,
+            // AUTO fields
+      vizSystemAuto: 'OptiView DAB IHC Detection Kit',
+      vizSystemAutoOther: '',
+      vizLinker: 'None',
+      vizLinkerOther: '',
+      vizAmplification: 'None',
+      vizAmplificationOther: '',
+      ampName: '',
+      ampProducer: '',
+      ampProductNumber: '',
+      incubationLinker: '',
+      incubationAmplification: '',
+      incubationPolymer: '',
+      incubationTempPolymer: '',
+
+      // MANUAL fields
+      vizMethod: '2- Layer Technique',
+      vizSystemManual: 'OptiView DAB IHC Detection Kit',
+      vizSystemManualOther: '',
+      vizProducer: 'DAB UV KITS',
+      vizProducerOther: '',
+      vizProductNumber: '',
+      vizIncubationTime: '',
+      vizIncubationTemp: '',
+      chromotype: 'DAB',          // or '', if you want blank by default
+      chromoName: '',
+      chromoProducer: '',
+      chromoProductNumber: '',
+      chromoTime: '',
+      chromoTemp: '',
+      Enhancement: 'Others',
+      enhanceOther: ''
+    },
+    HER2: {
+      stainingPlatform: 'Dako Omnis',
+      cloneType: 'Ready to use',
+      lotNumber: 'H2-5543',
+      dilutionFactor: 'RTU',
+      dilutionBuffer: 'Dako - REAL Antibody Diluent',
+      incubationTime: 30,
+      incubationTemp: 37,
+      hierEnable: 'Yes',
+      hierDevice: 'Declocking chamber',
+      hierDeviceOther: '',
+      hierBuffer: 'Std - Tris-EDTA pH9 (-)',
+      hierBufferOther: '',
+      hierTime: 15,
+      hierTemp: 110,
+      proteolysisEnable: 'Yes',
+      proteolysisDetails: 'Dako - Pepsin',
+      proteolysisEnzymeOther: '',
+      proteolysisTime: 20,
+      proteolysisTemp: 37,
+      proteolysisheatingtime: 20,
+      proteolysisheatingtemp: 97,
+            // AUTO fields
+      vizSystemAuto: 'OptiView DAB IHC Detection Kit',
+      vizSystemAutoOther: '',
+      vizLinker: 'None',
+      vizLinkerOther: '',
+      vizAmplification: 'None',
+      vizAmplificationOther: '',
+      ampName: '',
+      ampProducer: '',
+      ampProductNumber: '',
+      incubationLinker: '',
+      incubationAmplification: '',
+      incubationPolymer: '',
+      incubationTempPolymer: '',
+
+      // MANUAL fields
+      vizMethod: '2- Layer Technique',
+      vizSystemManual: 'OptiView DAB IHC Detection Kit',
+      vizSystemManualOther: '',
+      vizProducer: 'DAB UV KITS',
+      vizProducerOther: '',
+      vizProductNumber: '',
+      vizIncubationTime: '',
+      vizIncubationTemp: '',
+      chromotype: 'DAB',          // or '', if you want blank by default
+      chromoName: '',
+      chromoProducer: '',
+      chromoProductNumber: '',
+      chromoTime: '',
+      chromoTemp: '',
+      Enhancement: 'Others',
+      enhanceOther: ''
+    },
+    LYMPHOMA: {
+      stainingPlatform: 'Manual',
+      cloneType: 'Concentrated',
+      lotNumber: 'LY-3302',
+      dilutionFactor: '1:50',
+      dilutionBuffer: 'Cell Marque - Diamond - Antibody Diluent',
+      incubationTime: 15,
+      incubationTemp: 25,
+      hierEnable: 'Yes',
+      hierDevice: 'Microwave Oven',
+      hierDeviceOther: '',
+      hierBuffer: 'Std - EDTA pH8 (-)',
+      hierBufferOther: '',
+      hierTime: 20,
+      hierTemp: 95,
+      proteolysisEnable: 'Yes',
+      proteolysisDetails: 'Dako - Pepsin',
+      proteolysisEnzymeOther: '',
+      proteolysisTime: 20,
+      proteolysisTemp: 37,
+      proteolysisheatingtime: 20,
+      proteolysisheatingtemp: 97,
+
+            // AUTO fields
+      vizSystemAuto: 'OptiView DAB IHC Detection Kit',
+      vizSystemAutoOther: '',
+      vizLinker: 'None',
+      vizLinkerOther: '',
+      vizAmplification: 'None',
+      vizAmplificationOther: '',
+      ampName: '',
+      ampProducer: '',
+      ampProductNumber: '',
+      incubationLinker: '',
+      incubationAmplification: '',
+      incubationPolymer: '',
+      incubationTempPolymer: '',
+
+      // MANUAL fields
+      vizMethod: '2- Layer Technique',
+      vizSystemManual: 'OptiView DAB IHC Detection Kit',
+      vizSystemManualOther: '',
+      vizProducer: 'DAB UV KITS',
+      vizProducerOther: '',
+      vizProductNumber: '',
+      vizIncubationTime: '',
+      vizIncubationTemp: '',
+
+      chromotype: 'DAB',          // or '', if you want blank by default
+      chromoName: '',
+      chromoProducer: '',
+      chromoProductNumber: '',
+      chromoTime: '',
+      chromoTemp: '',
+      Enhancement: 'None'
+    },
+    MISC: {
+      stainingPlatform: 'Thermo Autostainer 36/48/72',
+      cloneType: 'Ready to use',
+      lotNumber: 'MISC-9011',
+      dilutionFactor: 'RTU',
+      dilutionBuffer: 'Diagnostic Biosystem - Primary Antibody Diluent',
+      incubationTime: 18,
+      incubationTemp: 25,
+      hierEnable: 'Yes',
+      hierDevice: 'Water Bath',
+      hierDeviceOther: '',
+      hierBuffer: 'Std - Citrate pH6 (-)',
+      hierBufferOther: '',
+      hierTime: 20,
+      hierTemp: 95,
+      proteolysisEnable: 'Yes',
+      proteolysisDetails: 'Dako - Pepsin',
+      proteolysisEnzymeOther: '',
+      proteolysisTime: 20,
+      proteolysisTemp: 37,
+      proteolysisheatingtime: 20,
+      proteolysisheatingtemp: 97,
+
+            // AUTO fields
+      vizSystemAuto: 'OptiView DAB IHC Detection Kit',
+      vizSystemAutoOther: '',
+      vizLinker: 'None',
+      vizLinkerOther: '',
+      vizAmplification: 'None',
+      vizAmplificationOther: '',
+      ampName: '',
+      ampProducer: '',
+      ampProductNumber: '',
+      incubationLinker: '',
+      incubationAmplification: '',
+      incubationPolymer: '',
+      incubationTempPolymer: '',
+
+      // MANUAL fields
+      vizMethod: '2- Layer Technique',
+      vizSystemManual: 'OptiView DAB IHC Detection Kit',
+      vizSystemManualOther: '',
+      vizProducer: 'DAB UV KITS',
+      vizProducerOther: '',
+      vizProductNumber: '',
+      vizIncubationTime: '',
+      vizIncubationTemp: '',
+      chromotype: 'DAB',          // or '', if you want blank by default
+      chromoName: '',
+      chromoProducer: '',
+      chromoProductNumber: '',
+      chromoTime: '',
+      chromoTemp: '',
+      Enhancement: 'Others',
+      enhanceOther: ''
+    }
+  };
+
+  // Expose (optional) so you can tweak from console if needed
+  window.protocolPrefills = {...defaultsByKey};
+
+  // --- 3) Grab modal elements once ---
+  const modalEl = document.getElementById('protocolModal');
+  if (!modalEl) return;
+
+  const els = {
+    title: document.getElementById('protocolModalLabel'),
+    platform: document.getElementById('stainingPlatform'),
+    platformOtherWrap: document.getElementById('otherStainingPlatformDiv'),
+    platformOther: document.getElementById('otherStainingPlatform'),
+
+    cloneType: document.getElementById('cloneType'),
+    lotNumber: document.getElementById('lotNumber'),
+    dilutionFactor: document.getElementById('dilutionFactor'),
+
+    dilutionBuffer: document.getElementById('dilutionBuffer'),
+    dilutionOtherWrap: document.getElementById('otherDilutionFields'),
+    bufferName: document.getElementById('bufferName'),
+    bufferProducer: document.getElementById('bufferProducer'),
+    productNumber: document.getElementById('productNumber'),
+
+    incubationTime: document.getElementById('incubationTime'),
+    incubationTemp: document.getElementById('incubationTemp'),
+
+
+    hierEnable: document.getElementById('hierEnable'),
+    hierDetails: document.getElementById('hierDetails'),
+
+    hierDevice: document.getElementById('hierDevice'),
+    hierDeviceOtherWrap: document.getElementById('hierDeviceOtherWrap'),
+    hierDeviceOther: document.getElementById('hierDeviceOther'),
+
+    hierBuffer: document.getElementById('hierBuffer'),
+    hierBufferOtherWrap: document.getElementById('hierBufferOtherWrap'),
+    hierBufferOther: document.getElementById('hierBufferOther'),
+
+    hierTime: document.getElementById('hierTime'),
+    hierTemp: document.getElementById('hierTemp'),
+
+    proteolysisEnable: document.getElementById('proteolysisEnable'),
+    proteolysisDetails: document.getElementById('proteolysisDetails'),
+    proteolysisEnzymeOther: document.getElementById('proteolysisEnzyme'),
+    proteolysisTime: document.getElementById('proteolysisTime'),
+    proteolysisTemp: document.getElementById('proteolysisTemp'),
+    proteolysisheatingtime: document.getElementById('proteolysisheatingtime'),
+    proteolysisheatingtemp: document.getElementById('proteolysisheatingtemp'),
+    
+    
+    // Visualization wrappers
+    vizAuto: document.getElementById('vizAuto'),
+    vizManual: document.getElementById('vizManual'),
+
+    // AUTO fields
+    vizSystemAuto: document.getElementById('vizSystemAuto'),
+    vizSystemAutoOtherWrap: document.getElementById('vizSystemAutoOtherWrap'),
+    vizSystemAutoOther: document.getElementById('vizSystemAutoOther'),
+    vizLinker: document.getElementById('vizLinker'),
+    vizLinkerOtherWrap: document.getElementById('vizLinkerOtherWrap'),
+    vizLinkerOther: document.getElementById('vizLinkerOther'),
+    vizAmplification: document.getElementById('vizAmplification'),
+    vizAmplificationOtherWrap: document.getElementById('vizAmplificationOtherWrap'),
+    vizAmplificationOther: document.getElementById('vizAmplificationOther'),
+    ampName: document.getElementById('ampName'),
+    ampProducer: document.getElementById('ampProducer'),
+    ampProductNumber: document.getElementById('ampProductNumber'),
+    incubationLinker: document.getElementById('incubationLinker'),
+    incubationAmplification: document.getElementById('incubationAmplification'),
+    incubationPolymer: document.getElementById('incubationPolymer'),
+    incubationTempPolymer: document.getElementById('incubationTempPolymer'),
+
+    // MANUAL fields
+    vizMethod: document.getElementById('vizMethod'),
+    vizSystemManual: document.getElementById('vizSystemManual'),
+    vizSystemManualOtherWrap: document.getElementById('vizSystemManualOtherWrap'),
+    vizSystemManualOther: document.getElementById('vizSystemManualOther'),
+    vizProducer: document.getElementById('vizProducer'),
+    vizProducerOtherWrap: document.getElementById('vizProducerOtherWrap'),
+    vizProducerOther: document.getElementById('vizProducerOther'),
+    vizProductNumber: document.getElementById('vizProductNumber'),
+    vizIncubationTime: document.getElementById('vizIncubationTime'),
+    vizIncubationTemp: document.getElementById('vizIncubationTemp'),
+
+
+    chromotype: document.getElementById('chromotype'),
+    chromoOtherWrap: document.getElementById('chromoOtherWrap'),
+    chromoName: document.getElementById('chromoName'),
+    chromoProducer: document.getElementById('chromoProducer'),
+    chromoProductNumber: document.getElementById('chromoProductNumber'),
+    chromoTime: document.getElementById('chromoTime'),
+    chromoTemp: document.getElementById('chromoTemp'),
+
+    enhancementSelect: document.getElementById('enhancementSelect'),
+    enhanceOtherWrap: document.getElementById('enhanceOtherWrap'),
+    enhanceOther: document.getElementById('enhanceOther'),
+
+
+  };
+
+  // --- 4) Helpers ---
+  function setSelectByText(sel, value) {
+    if (!sel) return;
+    const v = String(value ?? '').trim().toLowerCase();
+    const opt = [...sel.options].find(o => o.text.trim().toLowerCase() === v);
+    sel.value = opt ? opt.value : '';
+  }
+
+
+
+
+  function updateVisualizationMode() {
+    const val = (els.platform?.value || '').toLowerCase();
+    const manualLike = (val === 'manual' || val === 'others');
+
+    // Show/Hide groups
+    els.vizAuto?.classList.toggle('d-none', manualLike);
+    els.vizManual?.classList.toggle('d-none', !manualLike);
+
+    // Disable inputs in the hidden group
+    const disableGroup = (root, off) => {
+      if (!root) return;
+      root.querySelectorAll('input,select,textarea').forEach(x => x.disabled = off);
+    };
+    disableGroup(els.vizAuto, manualLike);
+    disableGroup(els.vizManual, !manualLike);
+  }
+
+  function toggleOthers() {
+    // Staining platform "Others"
+    if (els.platform) {
+      const isOther = els.platform.value === 'Others';
+      els.platformOtherWrap?.classList.toggle('d-none', !isOther);
+      if (!isOther && els.platformOther) els.platformOther.value = '';
+    }
+    // Dilution buffer "Others"
+    if (els.dilutionBuffer) {
+      const isOther = els.dilutionBuffer.value === 'Others';
+      els.dilutionOtherWrap?.classList.toggle('d-none', !isOther);
+      if (!isOther) {
+        els.bufferName && (els.bufferName.value = '');
+        els.bufferProducer && (els.bufferProducer.value = '');
+        els.productNumber && (els.productNumber.value = '');
+      }
+    }
+
+
+    if (els.hierEnable && els.hierDetails) {
+      const on = (els.hierEnable.value || 'Yes') === 'Yes';
+      els.hierDetails.classList.toggle('d-none', !on);
+
+      // Disable/enable children when hidden
+      els.hierDetails.querySelectorAll('input,select,textarea').forEach(el => {
+        el.disabled = !on;
+        if (!on) {
+          // optional: clear when disabled
+          if (el.tagName === 'SELECT') el.selectedIndex = 0;
+          if (el.tagName === 'INPUT') el.value = '';
+        }
+      });
+
+
+      
+    }
+
+    // Device "Others"
+    if (els.hierDevice) {
+      const devOther = els.hierDevice.value === 'Others (add specify)';
+      els.hierDeviceOtherWrap?.classList.toggle('d-none', !devOther);
+      if (!devOther && els.hierDeviceOther) els.hierDeviceOther.value = '';
+    }
+
+    // Buffer "Others"
+    if (els.hierBuffer) {
+      const bufOther = els.hierBuffer.value === 'Others,Then Specify';
+      els.hierBufferOtherWrap?.classList.toggle('d-none', !bufOther);
+      if (!bufOther && els.hierBufferOther) els.hierBufferOther.value = '';
+    }
+
+
+    // Proteolysis 
+    if (els.proteolysisEnable && els.proteolysisDetails) {
+      const on = (els.proteolysisEnable.value || 'Yes') === 'Yes';
+      els.proteolysisDetails.classList.toggle('d-none', !on);
+
+      // Disable/enable children when hidden
+      els.proteolysisDetails.querySelectorAll('input,select,textarea').forEach(el => {
+        el.disabled = !on;
+        if (!on) {
+          // optional: clear when disabled
+          if (el.tagName === 'SELECT') el.selectedIndex = 0;
+          if (el.tagName === 'INPUT') el.value = '';
+        }
+      });
+
+
+      
+    }
+
+    // Proteolysis "Others"
+    if (els.proteolysisEnzyme) {
+      const enzOther = els.proteolysisEnzyme.value === 'Others (add specify)';
+      els.proteolysisEnzymeOtherWrap?.classList.toggle('d-none', !enzOther);
+      if (!enzOther && els.proteolysisEnzymeOther) els.proteolysisEnzymeOther.value = '';
+    }
+
+
+    updateVisualizationMode();
+
+    // AUTO "Others"
+    if (els.vizSystemAuto) {
+      const o = els.vizSystemAuto.value === 'Others,Then Specify';
+      els.vizSystemAutoOtherWrap?.classList.toggle('d-none', !o);
+      if (!o && els.vizSystemAutoOther) els.vizSystemAutoOther.value = '';
+    }
+    if (els.vizLinker) {
+      const o = els.vizLinker.value === 'Others,Then Specify';
+      els.vizLinkerOtherWrap?.classList.toggle('d-none', !o);
+      if (!o && els.vizLinkerOther) els.vizLinkerOther.value = '';
+    }
+    if (els.vizAmplification) {
+      const o = els.vizAmplification.value === 'Others,Then Specify';
+      els.vizAmplificationOtherWrap?.classList.toggle('d-none', !o);
+      if (!o && els.vizAmplificationOther) els.vizAmplificationOther.value = '';
+    }
+
+    // MANUAL "Others"
+    if (els.vizSystemManual) {
+      const o = els.vizSystemManual.value === 'Others,Then Specify';
+      els.vizSystemManualOtherWrap?.classList.toggle('d-none', !o);
+      if (!o && els.vizSystemManualOther) els.vizSystemManualOther.value = '';
+    }
+    if (els.vizProducer) {
+      const o = els.vizProducer.value === 'Other (please specify)';
+      els.vizProducerOtherWrap?.classList.toggle('d-none', !o);
+      if (!o && els.vizProducerOther) els.vizProducerOther.value = '';
+    }
+
+
+
+    if (els.chromotype) {
+      const isOther = els.chromotype.value === 'Others,Then Specify';
+      els.chromoOtherWrap?.classList.toggle('d-none', !isOther);
+
+      // Optionally clear when hiding
+      if (!isOther) {
+        els.chromoName && (els.chromoName.value = '');
+        els.chromoProducer && (els.chromoProducer.value = '');
+        els.chromoProductNumber && (els.chromoProductNumber.value = '');
+        els.chromoTime && (els.chromoTime.value = '');
+        els.chromoTemp && (els.chromoTemp.value = '');
+      }
+    }
+
+
+    if (els.enhancementSelect) {
+      const enhOther = els.enhancementSelect.value === 'Others';
+      els.enhanceOtherWrap?.classList.toggle('d-none', !enhOther);
+      if (!enhOther && els.enhanceOther) {
+        els.enhanceOther.value = ''; // optional clear when hiding
+      }
+    }
+
+
+
+    
+
+  }
+
+  function fillForm(rec) {
+    setSelectByText(els.platform, rec.stainingPlatform);
+    setSelectByText(els.cloneType, rec.cloneType);
+    setSelectByText(els.dilutionBuffer, rec.dilutionBuffer);
+    setSelectByText(els.hierEnable, rec.hierEnable ?? 'Yes');
+    setSelectByText(els.hierDevice, rec.hierDevice);
+    setSelectByText(els.hierBuffer, rec.hierBuffer);
+
+
+    // Proteolysis
+
+    setSelectByText(els.proteolysisEnable, rec.proteolysisEnable ?? 'Yes');
+    setSelectByText(els.proteolysisEnzyme, rec.proteolysisEnzyme);
+    setSelectByText(els.enhancementSelect, rec.enhancementSelect);
+
+
+    if (els.lotNumber)      els.lotNumber.value      = rec.lotNumber ?? '';
+    if (els.dilutionFactor) els.dilutionFactor.value = rec.dilutionFactor ?? '';
+    if (els.incubationTime) els.incubationTime.value = rec.incubationTime ?? '';
+    if (els.incubationTemp) els.incubationTemp.value = rec.incubationTemp ?? '';
+    if (els.hierDeviceOther) els.hierDeviceOther.value = rec.hierDeviceOther ?? '';
+    if (els.hierBufferOther) els.hierBufferOther.value = rec.hierBufferOther ?? '';
+
+
+    if (els.proteolysisEnzymeOther) els.proteolysisEnzymeOther.value = rec.proteolysisEnzymeOther ?? '';
+
+
+    // optional detail fields if "Others" were previously saved
+    if (els.platformOther)  els.platformOther.value  = rec.otherStainingPlatform ?? '';
+    if (els.bufferName)     els.bufferName.value     = rec.bufferName ?? '';
+    if (els.bufferProducer) els.bufferProducer.value = rec.bufferProducer ?? '';
+    if (els.productNumber)  els.productNumber.value  = rec.productNumber ?? '';
+    if (els.hierTime) els.hierTime.value = rec.hierTime ?? '';
+    if (els.hierTemp) els.hierTemp.value = rec.hierTemp ?? '';
+
+    if (els.proteolysisTime) els.proteolysisTime.value = rec.proteolysisTime ?? '';
+    if (els.proteolysisTemp) els.proteolysisTemp.value = rec.proteolysisTemp  ?? '';
+
+
+    if (els.proteolysisheatingtime) els.proteolysisheatingtime.value = rec.proteolysisheatingtime ?? '';
+    if (els.proteolysisheatingtemp) els.proteolysisheatingtemp.value = rec.proteolysisheatingtemp ?? '';
+
+
+    const platformNow = (els.platform?.value || '').toLowerCase();
+    const manualLike = (platformNow === 'manual' || platformNow === 'others');
+    updateVisualizationMode();
+
+    // AUTO
+    setSelectByText(els.vizSystemAuto, rec.vizSystemAuto);
+    if (els.vizSystemAutoOther) els.vizSystemAutoOther.value = rec.vizSystemAutoOther ?? '';
+    setSelectByText(els.vizLinker, rec.vizLinker);
+    if (els.vizLinkerOther) els.vizLinkerOther.value = rec.vizLinkerOther ?? '';
+    setSelectByText(els.vizAmplification, rec.vizAmplification);
+    if (els.vizAmplificationOther) els.vizAmplificationOther.value = rec.vizAmplificationOther ?? '';
+    if (els.ampName) els.ampName.value = rec.ampName ?? '';
+    if (els.ampProducer) els.ampProducer.value = rec.ampProducer ?? '';
+    if (els.ampProductNumber) els.ampProductNumber.value = rec.ampProductNumber ?? '';
+    if (els.incubationLinker) els.incubationLinker.value = rec.incubationLinker ?? '';
+    if (els.incubationAmplification) els.incubationAmplification.value = rec.incubationAmplification ?? '';
+    if (els.incubationPolymer) els.incubationPolymer.value = rec.incubationPolymer ?? '';
+    if (els.incubationTempPolymer) els.incubationTempPolymer.value = rec.incubationTempPolymer ?? '';
+
+    // MANUAL
+    setSelectByText(els.vizMethod, rec.vizMethod);
+    setSelectByText(els.vizSystemManual, rec.vizSystemManual);
+    if (els.vizSystemManualOther) els.vizSystemManualOther.value = rec.vizSystemManualOther ?? '';
+    setSelectByText(els.vizProducer, rec.vizProducer);
+    if (els.vizProducerOther) els.vizProducerOther.value = rec.vizProducerOther ?? '';
+    if (els.vizProductNumber) els.vizProductNumber.value = rec.vizProductNumber ?? '';
+    if (els.vizIncubationTime) els.vizIncubationTime.value = rec.vizIncubationTime ?? '';
+    if (els.vizIncubationTemp) els.vizIncubationTemp.value = rec.vizIncubationTemp ?? '';
+
+
+
+    setSelectByText(els.chromotype, rec.chromotype);
+    if (els.chromoName)          els.chromoName.value = rec.chromoName ?? '';
+    if (els.chromoProducer)      els.chromoProducer.value = rec.chromoProducer ?? '';
+    if (els.chromoProductNumber) els.chromoProductNumber.value = rec.chromoProductNumber ?? '';
+    if (els.chromoTime)          els.chromoTime.value = rec.chromoTime ?? '';
+    if (els.chromoTemp)          els.chromoTemp.value = rec.chromoTemp ?? '';
+    if (els.enhanceOther) els.enhanceOther.value = rec.enhanceOther ?? '';
+    
+    
+    
+    toggleOthers();
+  }
+
+  function readForm() {
+
+    const hierEnabled = els.hierEnable?.value || 'Yes';
+    const proteolysisEnabled = els.proteolysisEnable?.value || 'Yes';
+    const readIf = (cond, v) => (cond ? v : '');
+    const data = {
+      stainingPlatform: els.platform?.value || '',
+      otherStainingPlatform: (els.platform?.value === 'Others') ? (els.platformOther?.value || '') : '',
+      cloneType: els.cloneType?.value || '',
+      lotNumber: els.lotNumber?.value || '',
+      dilutionFactor: els.dilutionFactor?.value || '',
+      dilutionBuffer: els.dilutionBuffer?.value || '',
+      bufferName: (els.dilutionBuffer?.value === 'Others') ? (els.bufferName?.value || '') : '',
+      bufferProducer: (els.dilutionBuffer?.value === 'Others') ? (els.bufferProducer?.value || '') : '',
+      productNumber: (els.dilutionBuffer?.value === 'Others') ? (els.productNumber?.value || '') : '',
+      incubationTime: els.incubationTime?.value || '',
+      incubationTemp: els.incubationTemp?.value || '',
+      hierEnable: hierEnabled,
+      hierDevice: readIf(hierEnabled === 'Yes', els.hierDevice?.value || ''),
+      hierDeviceOther: readIf(hierEnabled === 'Yes' && els.hierDevice?.value === 'Others (add specify)', els.hierDeviceOther?.value || ''),
+      hierBuffer: readIf(hierEnabled === 'Yes', els.hierBuffer?.value || ''),
+      hierBufferOther: readIf(hierEnabled === 'Yes' && els.hierBuffer?.value === 'Others,Then Specify', els.hierBufferOther?.value || ''),
+      hierTime: readIf(hierEnabled === 'Yes', els.hierTime?.value || ''),
+      hierTemp: readIf(hierEnabled === 'Yes', els.hierTemp?.value || ''),
+
+
+
+      proteolysisEnable: proteolysisEnabled,
+      proteolysisEnzyme: readIf(proteolysisEnabled === 'Yes', els.proteolysisEnzyme?.value || ''),
+      proteolysisEnzymeOther: readIf(proteolysisEnabled  === 'Yes' && els.proteolysisEnzyme?.value === 'Others (add specify)', els.proteolysisEnzymeOther?.value || ''),
+      proteolysisTime: readIf(proteolysisEnabled === 'Yes', els.proteolysisTime?.value || ''),
+      proteolysisTemp: readIf(proteolysisEnabled === 'Yes', els.proteolysisTemp?.value || ''),
+      proteolysisheatingtime: readIf(proteolysisEnabled === 'Yes', els.proteolysisheatingtime?.value || ''),
+      proteolysisheatingtemp: readIf(proteolysisEnabled === 'Yes', els.proteolysisheatingtemp?.value || ''),
+
+      // decide mode by platform every time
+      vizMode: ((els.platform?.value || '').toLowerCase() === 'manual' || (els.platform?.value || '').toLowerCase() === 'others') ? 'MANUAL' : 'AUTO',
+
+      // AUTO fields
+      vizSystemAuto: els.vizSystemAuto?.value || '',
+      vizSystemAutoOther: (els.vizSystemAuto?.value === 'Others,Then Specify') ? (els.vizSystemAutoOther?.value || '') : '',
+      vizLinker: els.vizLinker?.value || '',
+      vizLinkerOther: (els.vizLinker?.value === 'Others,Then Specify') ? (els.vizLinkerOther?.value || '') : '',
+      vizAmplification: els.vizAmplification?.value || '',
+      vizAmplificationOther: (els.vizAmplification?.value === 'Others,Then Specify') ? (els.vizAmplificationOther?.value || '') : '',
+      ampName: els.ampName?.value || '',
+      ampProducer: els.ampProducer?.value || '',
+      ampProductNumber: els.ampProductNumber?.value || '',
+      incubationLinker: els.incubationLinker?.value || '',
+      incubationAmplification: els.incubationAmplification?.value || '',
+      incubationPolymer: els.incubationPolymer?.value || '',
+      incubationTempPolymer: els.incubationTempPolymer?.value || '',
+
+      // MANUAL fields
+      vizMethod: els.vizMethod?.value || '',
+      vizSystemManual: els.vizSystemManual?.value || '',
+      vizSystemManualOther: (els.vizSystemManual?.value === 'Others,Then Specify') ? (els.vizSystemManualOther?.value || '') : '',
+      vizProducer: els.vizProducer?.value || '',
+      vizProducerOther: (els.vizProducer?.value === 'Other (please specify)') ? (els.vizProducerOther?.value || '') : '',
+      vizProductNumber: els.vizProductNumber?.value || '',
+      vizIncubationTime: els.vizIncubationTime?.value || '',
+      vizIncubationTemp: els.vizIncubationTemp?.value || '',
+
+
+      chromotype: els.chromotype?.value || '',
+      chromoName: (els.chromotype?.value === 'Others,Then Specify') ? (els.chromoName?.value || '') : '',
+      chromoProducer: (els.chromotype?.value === 'Others,Then Specify') ? (els.chromoProducer?.value || '') : '',
+      chromoProductNumber: (els.chromotype?.value === 'Others,Then Specify') ? (els.chromoProductNumber?.value || '') : '',
+      chromoTime: (els.chromotype?.value === 'Others,Then Specify') ? (els.chromoTime?.value || '') : '',
+      chromoTemp: (els.chromotype?.value === 'Others,Then Specify') ? (els.chromoTemp?.value || '') : '',
+
+
+      enhancementSelect: els.enhancementSelect?.value || '',
+      enhanceOther: (els.enhancementSelect?.value === 'Others') ? (els.enhanceOther?.value || '') : '',
+
+    };
+    return data;
+  }
+
+  const keyFor = (modKey, run) => `protocol:${modKey}:${run || 'all'}`;
+
+  // Keep "Others" UI reactive if user changes the dropdowns
+  els.platform?.addEventListener('change', toggleOthers);
+  els.dilutionBuffer?.addEventListener('change', toggleOthers);
+  els.hierEnable?.addEventListener('change', toggleOthers);
+  els.hierDevice?.addEventListener('change', toggleOthers);
+  els.hierBuffer?.addEventListener('change', toggleOthers);
+
+  els.platform?.addEventListener('change', toggleOthers);
+
+  els.vizSystemAuto?.addEventListener('change', toggleOthers);
+  els.vizLinker?.addEventListener('change', toggleOthers);
+  els.vizAmplification?.addEventListener('change', toggleOthers);
+
+  els.vizSystemManual?.addEventListener('change', toggleOthers);
+  els.vizProducer?.addEventListener('change', toggleOthers);
+  
+
+  els.proteolysisEnable?.addEventListener('change', toggleOthers);
+  els.proteolysisEnzyme?.addEventListener('change', toggleOthers);
+  els.chromotype?.addEventListener('change', toggleOthers);
+
+  els.enhancementSelect?.addEventListener('change', toggleOthers);
+
+  // --- 5) On open: detect submodule+run from the button, then prefill (saved -> defaults) ---
+  modalEl.addEventListener('show.bs.modal', (ev) => {
+    const btn = ev.relatedTarget; // Bootstrap 5 way to get the opener
+    const row = btn?.closest('tr');
+
+    const subRaw = btn?.dataset.submodule || row?.children?.[1]?.textContent?.trim() || 'ER';
+    const run    = btn?.dataset.run       || row?.children?.[0]?.textContent?.trim() || '';
+
+    const modKey = NORM(subRaw);
+    modalEl.dataset.modKey = modKey;
+    modalEl.dataset.run = run;
+
+    const saved = JSON.parse(localStorage.getItem(keyFor(modKey, run)) || 'null') || {};
+    const def   = defaultsByKey[modKey] || {};
+    const rec   = { ...def, ...saved };
+
+    if (els.title) els.title.textContent = `Protocol — ${DISPLAY[modKey] || subRaw}${run ? ` (Run ${run})` : ''}`;
+    fillForm(rec);
+  });
+
+  // --- 6) Auto-save your edits to localStorage when the modal closes ---
+  modalEl.addEventListener('hidden.bs.modal', () => {
+    const modKey = modalEl.dataset.modKey;
+    const run    = modalEl.dataset.run;
+    if (!modKey) return;
+    const payload = readForm();
+    localStorage.setItem(keyFor(modKey, run), JSON.stringify(payload));
+  });
+
+});
+</script>
+
+
+<script>
+(() => {
+  // --- SETTINGS ---
+  // Anything in blacklist will never be chosen.
+  const BLACKLIST = ['Select']; // add 'Blank','Others' if you want to avoid them
+
+  // If you want to only choose from a specific subset, set WHITELIST to an array of exact labels.
+  // Leave as null to allow all (minus BLACKLIST).
+  const WHITELIST = null;
+  // Example: const WHITELIST = ['Interpret in Tumor Cells','Interpret in Large Cells'];
+
+  function randomizeAndFreezeQuestionnaire(modalId) {
+    const tbodySel = modalId === 'modal-LYM' ? '#rows-LYM'
+                    : modalId === 'modal-MISC' ? '#rows-MISC'
+                    : null;
+    if (!tbodySel) return;
+
+    document.querySelectorAll(`${tbodySel} tr`).forEach((tr) => {
+      const qSelect = tr.querySelector('td:nth-child(2) select.form-select');
+      if (!qSelect || qSelect.dataset.frozen === '1') return;
+
+      // Build candidate list
+      let candidates = Array.from(qSelect.options).filter(opt => {
+        const txt = opt.text.trim();
+        if (BLACKLIST.includes(txt)) return false;
+        if (WHITELIST && !WHITELIST.includes(txt)) return false;
+        return true;
+      });
+
+      // Safety: if filtering removed everything, fall back to all non-blacklisted
+      if (candidates.length === 0) {
+        candidates = Array.from(qSelect.options).filter(opt => !BLACKLIST.includes(opt.text.trim()));
+      }
+
+      // Pick one at random and set it
+      if (candidates.length) {
+        const pick = candidates[Math.floor(Math.random() * candidates.length)];
+        qSelect.value = pick.value || pick.text;
+      }
+
+      // Freeze it
+      qSelect.dataset.frozen = '1';
+      qSelect.disabled = true;               // prevents editing & form submission of disabled fields
+      qSelect.classList.add('frozen-select');
+      // If you submit via FormData/JSON (not native form submit), disabled is fine.
+      // If you need it posted in a native form submit, comment out the line above
+      // and rely on pointer-events:none via .frozen-select instead.
+    });
+  }
+
+  // Hook when the modals open
+  document.addEventListener('shown.bs.modal', (e) => {
+    if (e.target.id === 'modal-LYM' || e.target.id === 'modal-MISC') {
+      randomizeAndFreezeQuestionnaire(e.target.id);
+    }
+  });
+
+  // Optional: expose a reroll function (call from console if needed)
+  window.rerollQuestionnaire = (modalId) => {
+    const tbodySel = modalId === 'modal-LYM' ? '#rows-LYM'
+                    : modalId === 'modal-MISC' ? '#rows-MISC'
+                    : null;
+    if (!tbodySel) return;
+    document.querySelectorAll(`${tbodySel} tr`).forEach(tr => {
+      const qSelect = tr.querySelector('td:nth-child(2) select.form-select');
+      if (!qSelect) return;
+      qSelect.disabled = false;
+      qSelect.classList.remove('frozen-select');
+      qSelect.dataset.frozen = '0';
+    });
+    randomizeAndFreezeQuestionnaire(modalId);
+  };
+})();
+</script>
+
+
+
+
 </body>
 </html>

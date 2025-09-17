@@ -39,3 +39,33 @@
   color: white;
 }
 
+/* Only inside the Enter Results modals */
+.enter-result-modal .table { 
+  min-width: 0;         /* stop forcing 1100px */
+  width: 100%;
+  table-layout: fixed;  /* makes column widths obey our rules */
+}
+
+
+.enter-result-modal table th:nth-child(1),
+.enter-result-modal table td:nth-child(1) {
+  width: 300px;         /* pick your size */
+}
+
+/* Make the 2nd column narrow */
+.enter-result-modal table th:nth-child(2),
+.enter-result-modal table td:nth-child(2) {
+  width: 200px;         /* pick your size */
+}
+
+/* Make the <select> itself smaller and centered */
+.enter-result-modal td.select .form-select {
+  width: 100%;         /* or use w-auto */
+}
+
+
+.frozen-select {
+  background-color: #f8f9fa !important;
+  color: #6c757d !important;
+  pointer-events: none;
+}
