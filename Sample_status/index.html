@@ -965,18 +965,6 @@
           </div>
         </div>
 
-        <h5 class="fw-semibold mt-3">Scoring</h5>
-        <div id="scoringSection" class="row g-3">
-          <div class="mb-3">
-            <select id="scoringSelect" class="form-select">
-              <option value="">Select</option>
-              <option>ALLRED Score</option>
-              <option>H-Score</option>
-            </select>
-          </div>
-        </div>  
-        
-
         <h5 class="fw-semibold mt-3">Comments (Tissues provided as control)</h5>
         <div style="max-width: 500px; width: 100%;">
           <textarea id="comments" class="form-control" rows="3" placeholder="Comments added by participants.."></textarea>
@@ -1589,245 +1577,144 @@
                 <th style="width:28%;">Select Score</th>
               </tr>
             </thead>
-            <tbody id="rows-ER">
-              <tr>
-                <td>Core 1</td>              
-                <td class = "select" ALIGN="center">      
+              <tbody id="rows-ER">
+                <tr>
+                  <td>Core 1</td>
+
+                  <!-- Participant Score -->
+                  <td class="select" ALIGN="center">
                     <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
+                      <option>Select</option>
+                      <optgroup label="Weak">
+                        <option>1-10%  ||  Weak</option>
+                        <option>11-33%  ||  Weak</option>
+                        <option>34-66%  ||  Weak</option>
+                        <option>&gt;67%  ||  Weak</option>
+                      </optgroup>
+                      <optgroup label="Moderate">
+                        <option>1-10%  ||  Moderate</option>
+                        <option>11-33%  ||  Moderate</option>
+                        <option>34-66%  ||  Moderate</option>
+                        <option>&gt;67%  ||  Moderate</option>
+                      </optgroup>
+                      <optgroup label="Strong">
+                        <option>1-10%  ||  Strong</option>
+                        <option>11-33%  ||  Strong</option>
+                        <option>34-66%  ||  Strong</option>
+                        <option>&gt;67%  ||  Strong</option>
+                      </optgroup>
                     </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 2</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 3</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 4</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 5</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 6</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 7</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 8</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>  
-              <tr>
-                <td>Core 9</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr> 
-                <td>Core 10</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 11</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 12</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Core 2</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 3</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 4</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 5</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 6</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 7</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 8</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 9</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 10</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 11</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
+
+                <tr>
+                  <td>Core 12</td>
+                  <td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                    <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                    <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                    <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+                  </select></td>
+                </tr>
             </tbody>
           </table>
         </div>
       </div>
 
       <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
-        <!--<div style="max-width:500px; width:100%;">
+        <div style="max-width:500px; width:100%;">
           <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
           <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
-        </div> -->
+        </div>
       </div>
 
       <div class="modal-footer border-0 px-4 py-3">
@@ -1859,243 +1746,109 @@
             </thead>
             <tbody id="rows-PR">
               <tr>
-                <td>Core 1</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
+                <td>Core 1</td>
+                <td class="select" ALIGN="center">
+                  <select class="form-select">
+                    <option>Select</option>
+                    <optgroup label="Weak">
+                      <option>1-10%  ||  Weak</option>
+                      <option>11-33%  ||  Weak</option>
+                      <option>34-66%  ||  Weak</option>
+                      <option>&gt;67%  ||  Weak</option>
+                    </optgroup>
+                    <optgroup label="Moderate">
+                      <option>1-10%  ||  Moderate</option>
+                      <option>11-33%  ||  Moderate</option>
+                      <option>34-66%  ||  Moderate</option>
+                      <option>&gt;67%  ||  Moderate</option>
+                    </optgroup>
+                    <optgroup label="Strong">
+                      <option>1-10%  ||  Strong</option>
+                      <option>11-33%  ||  Strong</option>
+                      <option>34-66%  ||  Strong</option>
+                      <option>&gt;67%  ||  Strong</option>
+                    </optgroup>
+                  </select>
                 </td>
               </tr>
-              <tr>  
-                <td>Core 2</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 3</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 4</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 5</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 6</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 7</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 8</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>  
-              <tr>
-                <td>Core 9</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr> 
-                <td>Core 10</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 11</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
-              <tr>  
-                <td>Core 12</td>              
-                <td class = "select" ALIGN="center">      
-                    <select class="form-select">
-                          <option>Select</option>        
-                          <option>Negative</option>
-                          <option>3/8</option>
-                          <option>4/8</option>
-                          <option>5/8</option>
-                          <option>6/8</option>
-                          <option>7/8</option>
-                          <option>8/8</option>
-                          <option>Lymph Node</option>
-                          <option>Control</option>
-                          <option>Blank</option>
-                          <option>Others</option>
-                    </select>
-                </td>
-              </tr>
+
+              <tr><td>Core 2</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 3</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 4</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 5</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 6</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 7</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 8</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 9</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 10</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 11</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
+              <tr><td>Core 12</td><td class="select" ALIGN="center"><select class="form-select"><option>Select</option>
+                <optgroup label="Weak"><option>1-10%  ||  Weak</option><option>11-33%  ||  Weak</option><option>34-66%  ||  Weak</option><option>&gt;67%  ||  Weak</option></optgroup>
+                <optgroup label="Moderate"><option>1-10%  ||  Moderate</option><option>11-33%  ||  Moderate</option><option>34-66%  ||  Moderate</option><option>&gt;67%  ||  Moderate</option></optgroup>
+                <optgroup label="Strong"><option>1-10%  ||  Strong</option><option>11-33%  ||  Strong</option><option>34-66%  ||  Strong</option><option>&gt;67%  ||  Strong</option></optgroup>
+              </select></td></tr>
+
             </tbody>
+
           </table>
         </div>
       </div>
 
       <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
-        <!--<div style="max-width:500px; width:100%;">
+        <div style="max-width:500px; width:100%;">
           <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
           <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
-        </div> -->
+        </div>
       </div>
 
       <div class="modal-footer border-0 px-4 py-3">
@@ -2336,10 +2089,10 @@
       </div>
 
       <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
-        <!--<div style="max-width:500px; width:100%;">
+        <div style="max-width:500px; width:100%;">
           <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
           <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
-        </div> -->
+        </div>
       </div>
 
       <div class="modal-footer border-0 px-4 py-3">
@@ -2709,6 +2462,13 @@
             </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
+        <div style="max-width:500px; width:100%;">
+            <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
+            <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
         </div>
       </div>
 
@@ -3105,6 +2865,13 @@
             </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex flex-column align-items-center text-center pb-2">
+        <div style="max-width:500px; width:100%;">
+            <label class="fw-semibold mb-1 d-block" for="comment-ER">Comment:</label>
+            <textarea id="comment-ER" class="form-control" rows="3" placeholder="Enter your comment here..."></textarea>
         </div>
       </div>
 
@@ -4367,6 +4134,110 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 })();
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const tbodies = [
+    document.querySelector("#rows-PR"),
+    document.querySelector("#rows-ER"),
+  ].filter(Boolean);
+
+  if (!tbodies.length) return;
+
+  function ensureNAOption(sel) {
+    const hasNA = [...sel.querySelectorAll("option")].some(
+      o => o.textContent.trim() === "NA"
+    );
+    if (hasNA) return;
+
+    const na = document.createElement("option");
+    na.value = "NA";
+    na.textContent = "NA";
+
+    const firstOptgroup = sel.querySelector("optgroup");
+    if (firstOptgroup) sel.insertBefore(na, firstOptgroup);
+    else sel.appendChild(na);
+  }
+
+  function wireNAReason(td, scoreSelect, ariaLabel) {
+    if (!td || !scoreSelect) return;
+
+    ensureNAOption(scoreSelect);
+
+    let wrap = td.querySelector(".na-wrap");
+    if (!wrap) {
+      wrap = document.createElement("div");
+      wrap.className = "na-wrap";
+      wrap.style.display = "flex";
+      wrap.style.gap = "8px";
+      wrap.style.alignItems = "center";
+      wrap.style.flexWrap = "nowrap";
+
+      td.innerHTML = "";
+      td.appendChild(wrap);
+      wrap.appendChild(scoreSelect);
+    }
+
+    scoreSelect.style.flex = "1 1 auto";
+    scoreSelect.style.minWidth = "0";
+
+    let reasonSel = wrap.querySelector("select.na-reason");
+    if (!reasonSel) {
+      reasonSel = document.createElement("select");
+      reasonSel.className = "form-select form-select-sm na-reason";
+      reasonSel.setAttribute("aria-label", ariaLabel);
+      reasonSel.style.flex = "0 0 220px";
+      reasonSel.style.display = "none";
+      reasonSel.disabled = true;
+
+      reasonSel.innerHTML = `
+        <option value="">Reason</option>
+        <option value="Tissue Inadequate">Tissue Inadequate</option>
+        <option value="Tissue Wash-off">Tissue Wash-off</option>
+      `;
+
+      wrap.appendChild(reasonSel);
+    }
+
+    if (scoreSelect.dataset.naWired === "1") return;
+    scoreSelect.dataset.naWired = "1";
+
+    const toggle = () => {
+      const txt =
+        scoreSelect.options[scoreSelect.selectedIndex]?.textContent?.trim() || "";
+      const isNA = scoreSelect.value === "NA" || txt === "NA";
+
+      if (isNA) {
+        reasonSel.style.display = "";
+        reasonSel.disabled = false;
+      } else {
+        reasonSel.value = "";
+        reasonSel.style.display = "none";
+        reasonSel.disabled = true;
+      }
+    };
+
+    scoreSelect.addEventListener("change", toggle);
+    toggle();
+  }
+
+  tbodies.forEach(tbody => {
+    const labelPrefix = tbody.id === "rows-ER" ? "ER" : "PR";
+
+    tbody.querySelectorAll("tr").forEach(tr => {
+      const tds = tr.querySelectorAll("td");
+      if (tds.length < 2) return;
+
+      // 2-column table: [0]=Core, [1]=Score
+      const scoreTd = tds[1];
+      const scoreSelect = scoreTd.querySelector("select.form-select");
+      wireNAReason(scoreTd, scoreSelect, `NA Reason (${labelPrefix})`);
+    });
+  });
+});
+</script>
+
+
 
 
 
